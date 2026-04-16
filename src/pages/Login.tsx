@@ -8,6 +8,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { useAuth } from '@/contexts/AuthContext';
 import { Eye, EyeOff, Mail, Lock, ArrowRight, Sparkles } from 'lucide-react';
 import { GradientGlows } from '@/components/GradientGlow';
+import { LanguageSwitcher } from '@/components/LanguageSwitcher';
+import { useTranslation } from 'react-i18next';
 
 export function Login() {
   const [email, setEmail] = useState('');
@@ -18,6 +20,7 @@ export function Login() {
   
   const { login } = useAuth();
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -28,7 +31,7 @@ export function Login() {
       await login(email, password);
       navigate('/dashboard');
     } catch (err) {
-      setError('登录失败，请检查邮箱和密码');
+      setError('Login failed, please check your email and password');
     } finally {
       setIsLoading(false);
     }
@@ -47,6 +50,11 @@ export function Login() {
           backgroundSize: '60px 60px',
         }}
       />
+
+      {/* Language Switcher */}
+      <div className="absolute top-4 right-4 z-20">
+        <LanguageSwitcher />
+      </div>
 
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -69,9 +77,9 @@ export function Login() {
             <div className="mx-auto w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
               <Sparkles className="w-6 h-6 text-primary" />
             </div>
-            <CardTitle className="text-2xl text-white">欢迎回来</CardTitle>
+            <CardTitle className="text-2xl text-white">{t('login.title')}</CardTitle>
             <CardDescription className="text-gray-400">
-              登录您的 RendaBio 账户
+              {t('login.subtitle')}
             </CardDescription>
           </CardHeader>
           
@@ -84,7 +92,7 @@ export function Login() {
               )}
 
               <div className="space-y-2">
-                <Label htmlFor="email" className="text-gray-300">邮箱</Label>
+                <Label htmlFor="email" className="text-gray-300">{t('login.email')}</Label>
                 <div className="relative">
                   <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
                   <Input
@@ -100,7 +108,7 @@ export function Login() {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="password" className="text-gray-300">密码</Label>
+                <Label htmlFor="password" className="text-gray-300">{t('login.password')}</Label>
                 <div className="relative">
                   <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
                   <Input
@@ -125,10 +133,10 @@ export function Login() {
               <div className="flex items-center justify-between text-sm">
                 <label className="flex items-center gap-2 text-gray-400 cursor-pointer">
                   <input type="checkbox" className="rounded bg-white/5 border-white/10" />
-                  记住我
+                  {t('login.rememberMe')}
                 </label>
                 <Link to="/forgot-password" className="text-primary hover:text-primary-light">
-                  忘记密码？
+                  {t('login.forgotPassword')}
                 </Link>
               </div>
 
@@ -140,11 +148,11 @@ export function Login() {
                 {isLoading ? (
                   <span className="flex items-center gap-2">
                     <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                    登录中...
+                    {t('login.loading')}
                   </span>
                 ) : (
                   <span className="flex items-center gap-2">
-                    登录
+                    {t('login.submit')}
                     <ArrowRight className="w-4 h-4" />
                   </span>
                 )}
@@ -153,9 +161,9 @@ export function Login() {
 
             <div className="mt-6 text-center">
               <p className="text-gray-400 text-sm">
-                还没有账户？{' '}
+                {t('login.noAccount')}{' '}
                 <Link to="/register" className="text-primary hover:text-primary-light font-medium">
-                  立即注册
+                  {t('login.register')}
                 </Link>
               </p>
             </div>
@@ -166,7 +174,7 @@ export function Login() {
                 <div className="w-full border-t border-white/10" />
               </div>
               <div className="relative flex justify-center text-sm">
-                <span className="px-2 bg-surface text-gray-500">或使用以下方式登录</span>
+                <span className="px-2 bg-surface text-gray-500">{t('login.orLoginWith')}</span>
               </div>
             </div>
 
@@ -192,10 +200,10 @@ export function Login() {
         </Card>
 
         <p className="text-center mt-6 text-gray-500 text-sm">
-          登录即表示您同意我们的{' '}
-          <Link to="/terms" className="text-primary hover:underline">服务条款</Link>
-          {' '}和{' '}
-          <Link to="/privacy" className="text-primary hover:underline">隐私政策</Link>
+          {t('login.agreement')}{' '}
+          <Link to="/terms" className="text-primary hover:underline">{t('login.terms')}</Link>
+          {' '}{t('login.and')}{' '}
+          <Link to="/privacy" className="text-primary hover:underline">{t('login.privacy')}</Link>
         </p>
       </motion.div>
     </div>

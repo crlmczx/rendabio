@@ -1,0 +1,263 @@
+{
+  "nav": {
+    "product": "产品",
+    "agents": "智能体",
+    "pricing": "定价",
+    "docs": "文档",
+    "login": "登录",
+    "getStarted": "开始使用",
+    "dashboard": "仪表盘"
+  },
+  "hero": {
+    "badge": "AI 多智能体协作平台",
+    "title": "解锁你的",
+    "titleHighlight": "AI 智能体团队",
+    "subtitle": "RendaBio 是专为知识工作者打造的多智能体平台，在营销、研究、开发等复杂业务场景中提升生产力",
+    "ctaPrimary": "免费开始",
+    "ctaSecondary": "了解更多",
+    "trustedBy": "已有 {{count}} 用户信赖"
+  },
+  "logos": {
+    "title": "受到全球领先团队信赖"
+  },
+  "features": {
+    "title": "为知识工作者",
+    "titleHighlight": "打造",
+    "subtitle": "融合 A2A + MCP 双协议，构建下一代多智能体协作平台",
+    "multiAgent": {
+      "title": "多智能体协作",
+      "description": "模拟真实团队分工，多个专业智能体协同工作，自动调度完成复杂任务。基于 A2A 协议，智能体之间高效通信。"
+    },
+    "superSearch": {
+      "title": "超级搜写",
+      "description": "从任务分解、多源检索到结构化生成，提供全链路的搜索与写作工作流。支持实时信息获取和深度研究。"
+    },
+    "verification": {
+      "title": "实时验证",
+      "description": "多智能体交叉验证，事实核查，有效抑制幻觉，确保输出准确可靠。所有结论可追溯来源。"
+    },
+    "stats": {
+      "accuracy": "准确率",
+      "efficiency": "效率提升",
+      "agents": "专业智能体",
+      "support": "全天候服务"
+    }
+  },
+  "agents": {
+    "title": "专业智能体",
+    "titleHighlight": "随时待命",
+    "subtitle": "每个智能体都是领域专家，协同工作完成复杂任务",
+    "teamo": {
+      "name": "Teamo",
+      "role": "全能指挥官",
+      "description": "负责任务调度和团队管理，监控执行状态，及时汇报进度"
+    },
+    "deepresearch": {
+      "name": "DeepResearch",
+      "role": "深度研究员",
+      "description": "精准搜索和全球信息整合，提供全面详细的研究报告"
+    },
+    "craft": {
+      "name": "Craft",
+      "role": "内容创作专家",
+      "description": "媒体内容、创意策划、学术写作，评估和优化创作成果"
+    },
+    "analytics": {
+      "name": "Analytics",
+      "role": "数据分析师",
+      "description": "数据可视化、代码处理、洞察提取，助力数据驱动决策"
+    },
+    "brainstorm": {
+      "name": "Brainstorm",
+      "role": "头脑风暴组长",
+      "description": "创意思考、策略规划，组织专家智能体进行头脑风暴"
+    },
+    "claudecode": {
+      "name": "Claude Code",
+      "role": "编程专家",
+      "description": "代码编辑、执行、调试、优化，端到端云端开发体验"
+    },
+    "strategy": {
+      "name": "Strategy",
+      "role": "战略顾问",
+      "description": "业务战略、商业咨询，深度认知场景的系统化解决方案"
+    },
+    "decision": {
+      "name": "Decision",
+      "role": "决策顾问",
+      "description": "复杂决策咨询、麦肯锡分析方法，分解和解决决策难题"
+    },
+    "more": "还有更多专业智能体持续加入中..."
+  },
+  "workflow": {
+    "title": "简单五步",
+    "titleHighlight": "完成复杂任务",
+    "subtitle": "无需学习成本，像与真人团队协作一样简单",
+    "steps": {
+      "1": {
+        "title": "输入任务",
+        "description": "描述您的需求或上传文件，用自然语言告诉 RendaBio 您想要完成什么"
+      },
+      "2": {
+        "title": "智能分解",
+        "description": "AI 自动分解任务并调度最合适的智能体团队"
+      },
+      "3": {
+        "title": "并行执行",
+        "description": "多个专业智能体协同工作，各自发挥所长"
+      },
+      "4": {
+        "title": "交叉验证",
+        "description": "结果互相验证，确保准确性和可靠性"
+      },
+      "5": {
+        "title": "输出成果",
+        "description": "获得完整、专业的最终报告，可追溯每个决策过程"
+      }
+    },
+    "demo": {
+      "user": "用户",
+      "justNow": "刚刚",
+      "message": "帮我分析特斯拉 2025 年 Q2 财报，并与比亚迪进行对比分析",
+      "status": "RendaBio 正在调度智能体团队..."
+    }
+  },
+  "usecases": {
+    "title": "适用于各种",
+    "titleHighlight": "业务场景",
+    "subtitle": "无论您是咨询顾问、市场分析师还是内容创作者，RendaBio 都能助您一臂之力",
+    "marketResearch": {
+      "title": "市场研究与行业分析",
+      "description": "自动收集数据、交叉验证、生成深度研究报告。支持多源信息整合，提供全面的市场洞察和竞争分析。",
+      "features": ["实时数据收集", "多源交叉验证", "可视化报告", "趋势预测"],
+      "stat": "研究效率提升"
+    },
+    "contentCreation": {
+      "title": "内容创作与写作",
+      "description": "自动规划、检索、起草专业文案或学术论文。从创意构思到最终成稿，全流程 AI 辅助。",
+      "features": ["智能大纲生成", "多风格写作", "自动引用标注", "质量评估"],
+      "stat": "创作时间节省"
+    },
+    "strategy": {
+      "title": "商业战略规划",
+      "description": "协调多个智能体完成 SWOT 分析、商业计划书、市场进入策略等复杂商业文档。",
+      "features": ["SWOT 分析", "竞争策略", "财务预测", "风险评估"],
+      "stat": "方案通过率"
+    },
+    "dataAnalysis": {
+      "title": "数据分析与可视化",
+      "description": "处理复杂数据集，生成清晰可视化图表。支持多种数据源和自定义分析模型。",
+      "features": ["多数据源接入", "自动清洗", "智能可视化", "洞察提取"],
+      "stat": "生成报告时间"
+    },
+    "learnMore": "了解更多"
+  },
+  "pricing": {
+    "title": "选择适合您的",
+    "titleHighlight": "方案",
+    "subtitle": "灵活的定价方案，满足不同规模团队的需求",
+    "free": {
+      "name": "免费版",
+      "price": "0",
+      "period": "月",
+      "description": "适合个人用户体验",
+      "features": ["基础智能体访问", "每日 10 次调用", "社区支持", "基础模板", "标准响应速度"],
+      "cta": "免费开始"
+    },
+    "pro": {
+      "name": "专业版",
+      "price": "99",
+      "period": "月",
+      "description": "适合专业用户和小团队",
+      "features": ["全部智能体访问", "每日 100 次调用", "优先技术支持", "自定义模板", "快速响应速度", "API 访问", "团队协作功能"],
+      "cta": "立即升级",
+      "popular": "推荐"
+    },
+    "enterprise": {
+      "name": "企业版",
+      "price": "定制",
+      "period": "",
+      "description": "适合大型团队和企业",
+      "features": ["无限调用次数", "私有化部署选项", "专属客户经理", "SLA 服务保障", "定制智能体开发", "高级安全合规", "SSO 单点登录"],
+      "cta": "联系销售"
+    },
+    "note": "所有方案均支持 14 天免费试用，无需信用卡"
+  },
+  "cta": {
+    "badge": "立即开始您的 AI 之旅",
+    "title": "准备好提升您的",
+    "titleLine2": "生产力了吗？",
+    "subtitle": "加入 10,000+ 用户，体验 AI 多智能体协作的力量",
+    "primary": "免费开始",
+    "secondary": "预约演示",
+    "features": {
+      "noCard": "无需信用卡",
+      "freeTrial": "14 天免费试用",
+      "cancel": "随时取消"
+    }
+  },
+  "footer": {
+    "description": "专为知识工作者打造的 AI 多智能体协作平台，让复杂任务变得简单高效。",
+    "product": "产品",
+    "resources": "资源",
+    "company": "公司",
+    "legal": "法律",
+    "copyright": "© {{year}} RendaBio. All rights reserved.",
+    "status": "系统运行正常"
+  },
+  "login": {
+    "title": "欢迎回来",
+    "subtitle": "登录您的 RendaBio 账户",
+    "email": "邮箱",
+    "password": "密码",
+    "rememberMe": "记住我",
+    "forgotPassword": "忘记密码？",
+    "submit": "登录",
+    "loading": "登录中...",
+    "noAccount": "还没有账户？",
+    "register": "立即注册",
+    "orLoginWith": "或使用以下方式登录",
+    "agreement": "登录即表示您同意我们的",
+    "terms": "服务条款",
+    "and": "和",
+    "privacy": "隐私政策"
+  },
+  "register": {
+    "title": "创建账户",
+    "subtitle": "开始您的 AI 智能体之旅",
+    "name": "姓名",
+    "email": "邮箱",
+    "password": "密码",
+    "confirmPassword": "确认密码",
+    "passwordStrength": "密码强度",
+    "strength": ["弱", "一般", "良好", "强"],
+    "agree": "我同意",
+    "terms": "服务条款",
+    "privacy": "隐私政策",
+    "submit": "创建账户",
+    "loading": "创建账户中...",
+    "hasAccount": "已有账户？",
+    "login": "立即登录",
+    "orRegisterWith": "或使用以下方式注册"
+  },
+  "dashboard": {
+    "welcome": "欢迎回来，{{name}}！",
+    "subtitle": "今天想要完成什么任务？",
+    "stats": {
+      "conversations": "AI 对话",
+      "tasks": "任务完成",
+      "timeSaved": "节省时间"
+    },
+    "quickStart": "快速开始",
+    "account": "账户信息",
+    "plan": "套餐",
+    "callsRemaining": "剩余调用",
+    "joined": "注册时间",
+    "settings": "账户设置"
+  },
+  "language": {
+    "title": "语言",
+    "zh": "中文",
+    "en": "English"
+  }
+}

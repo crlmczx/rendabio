@@ -1,43 +1,46 @@
 import { motion } from 'framer-motion';
 import { TrendingUp, FileEdit, Target, BarChart2, ArrowRight } from 'lucide-react';
 import { AnimatedSection } from '@/components/AnimatedSection';
-
-const useCases = [
-  {
-    icon: TrendingUp,
-    title: '市场研究与行业分析',
-    description: '自动收集数据、交叉验证、生成深度研究报告。支持多源信息整合，提供全面的市场洞察和竞争分析。',
-    features: ['实时数据收集', '多源交叉验证', '可视化报告', '趋势预测'],
-    color: 'from-primary to-primary-dark',
-    stats: { value: '10x', label: '研究效率提升' },
-  },
-  {
-    icon: FileEdit,
-    title: '内容创作与写作',
-    description: '自动规划、检索、起草专业文案或学术论文。从创意构思到最终成稿，全流程 AI 辅助。',
-    features: ['智能大纲生成', '多风格写作', '自动引用标注', '质量评估'],
-    color: 'from-blue-500 to-blue-700',
-    stats: { value: '75%', label: '创作时间节省' },
-  },
-  {
-    icon: Target,
-    title: '商业战略规划',
-    description: '协调多个智能体完成 SWOT 分析、商业计划书、市场进入策略等复杂商业文档。',
-    features: ['SWOT 分析', '竞争策略', '财务预测', '风险评估'],
-    color: 'from-purple-500 to-purple-700',
-    stats: { value: '95%', label: '方案通过率' },
-  },
-  {
-    icon: BarChart2,
-    title: '数据分析与可视化',
-    description: '处理复杂数据集，生成清晰可视化图表。支持多种数据源和自定义分析模型。',
-    features: ['多数据源接入', '自动清洗', '智能可视化', '洞察提取'],
-    color: 'from-emerald-500 to-emerald-700',
-    stats: { value: '5min', label: '生成报告时间' },
-  },
-];
+import { useTranslation } from 'react-i18next';
 
 export function UseCases() {
+  const { t } = useTranslation();
+
+  const useCases = [
+    {
+      icon: TrendingUp,
+      title: t('usecases.marketResearch.title'),
+      description: t('usecases.marketResearch.description'),
+      features: t('usecases.marketResearch.features', { returnObjects: true }) as string[],
+      color: 'from-primary to-primary-dark',
+      stats: { value: '10x', label: t('usecases.marketResearch.stat') },
+    },
+    {
+      icon: FileEdit,
+      title: t('usecases.contentCreation.title'),
+      description: t('usecases.contentCreation.description'),
+      features: t('usecases.contentCreation.features', { returnObjects: true }) as string[],
+      color: 'from-blue-500 to-blue-700',
+      stats: { value: '75%', label: t('usecases.contentCreation.stat') },
+    },
+    {
+      icon: Target,
+      title: t('usecases.strategy.title'),
+      description: t('usecases.strategy.description'),
+      features: t('usecases.strategy.features', { returnObjects: true }) as string[],
+      color: 'from-purple-500 to-purple-700',
+      stats: { value: '95%', label: t('usecases.strategy.stat') },
+    },
+    {
+      icon: BarChart2,
+      title: t('usecases.dataAnalysis.title'),
+      description: t('usecases.dataAnalysis.description'),
+      features: t('usecases.dataAnalysis.features', { returnObjects: true }) as string[],
+      color: 'from-emerald-500 to-emerald-700',
+      stats: { value: '5min', label: t('usecases.dataAnalysis.stat') },
+    },
+  ];
+
   return (
     <section className="py-24 bg-black relative">
       {/* Background */}
@@ -52,14 +55,14 @@ export function UseCases() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
           >
-            应用场景
+            Use Cases
           </motion.span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6">
-            适用于各种
-            <span className="text-gradient"> 业务场景</span>
+            {t('usecases.title')}
+            <span className="text-gradient"> {t('usecases.titleHighlight')}</span>
           </h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            无论您是咨询顾问、市场分析师还是内容创作者，Tends 都能助您一臂之力
+            {t('usecases.subtitle')}
           </p>
         </AnimatedSection>
 
@@ -109,7 +112,7 @@ export function UseCases() {
                     className="inline-flex items-center text-primary text-sm font-medium group/link"
                     whileHover={{ x: 4 }}
                   >
-                    了解更多
+                    {t('usecases.learnMore')}
                     <ArrowRight className="ml-1 w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
                   </motion.a>
                 </div>

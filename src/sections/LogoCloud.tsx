@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { Building2, Briefcase, GraduationCap, LineChart, Code2, Globe } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 const brands = [
   { name: 'TechCorp', icon: Building2 },
@@ -11,6 +12,8 @@ const brands = [
 ];
 
 export function LogoCloud() {
+  const { t } = useTranslation();
+
   return (
     <section className="py-16 bg-black border-y border-white/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -21,7 +24,7 @@ export function LogoCloud() {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          受到全球领先团队信赖
+          {t('logos.title')}
         </motion.p>
 
         <motion.div

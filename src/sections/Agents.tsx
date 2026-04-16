@@ -11,68 +11,71 @@ import {
   Scale 
 } from 'lucide-react';
 import { AnimatedSection, StaggerContainer, StaggerItem } from '@/components/AnimatedSection';
-
-const agents = [
-  {
-    name: 'Teamo',
-    role: '全能指挥官',
-    description: '负责任务调度和团队管理，监控执行状态，及时汇报进度',
-    icon: Crown,
-    color: 'from-primary to-primary-dark',
-    featured: true,
-  },
-  {
-    name: 'DeepResearch',
-    role: '深度研究员',
-    description: '精准搜索和全球信息整合，提供全面详细的研究报告',
-    icon: Search,
-    color: 'from-blue-500 to-blue-700',
-  },
-  {
-    name: 'Craft',
-    role: '内容创作专家',
-    description: '媒体内容、创意策划、学术写作，评估和优化创作成果',
-    icon: PenTool,
-    color: 'from-purple-500 to-purple-700',
-  },
-  {
-    name: 'Analytics',
-    role: '数据分析师',
-    description: '数据可视化、代码处理、洞察提取，助力数据驱动决策',
-    icon: BarChart3,
-    color: 'from-emerald-500 to-emerald-700',
-  },
-  {
-    name: 'Brainstorm',
-    role: '头脑风暴组长',
-    description: '创意思考、策略规划，组织专家智能体进行头脑风暴',
-    icon: Lightbulb,
-    color: 'from-amber-500 to-amber-700',
-  },
-  {
-    name: 'Claude Code',
-    role: '编程专家',
-    description: '代码编辑、执行、调试、优化，端到端云端开发体验',
-    icon: Code,
-    color: 'from-rose-500 to-rose-700',
-  },
-  {
-    name: 'Strategy',
-    role: '战略顾问',
-    description: '业务战略、商业咨询，深度认知场景的系统化解决方案',
-    icon: Target,
-    color: 'from-cyan-500 to-cyan-700',
-  },
-  {
-    name: 'Decision',
-    role: '决策顾问',
-    description: '复杂决策咨询、麦肯锡分析方法，分解和解决决策难题',
-    icon: Scale,
-    color: 'from-indigo-500 to-indigo-700',
-  },
-];
+import { useTranslation } from 'react-i18next';
 
 export function Agents() {
+  const { t } = useTranslation();
+
+  const agents = [
+    {
+      name: t('agents.teamo.name'),
+      role: t('agents.teamo.role'),
+      description: t('agents.teamo.description'),
+      icon: Crown,
+      color: 'from-primary to-primary-dark',
+      featured: true,
+    },
+    {
+      name: t('agents.deepresearch.name'),
+      role: t('agents.deepresearch.role'),
+      description: t('agents.deepresearch.description'),
+      icon: Search,
+      color: 'from-blue-500 to-blue-700',
+    },
+    {
+      name: t('agents.craft.name'),
+      role: t('agents.craft.role'),
+      description: t('agents.craft.description'),
+      icon: PenTool,
+      color: 'from-purple-500 to-purple-700',
+    },
+    {
+      name: t('agents.analytics.name'),
+      role: t('agents.analytics.role'),
+      description: t('agents.analytics.description'),
+      icon: BarChart3,
+      color: 'from-emerald-500 to-emerald-700',
+    },
+    {
+      name: t('agents.brainstorm.name'),
+      role: t('agents.brainstorm.role'),
+      description: t('agents.brainstorm.description'),
+      icon: Lightbulb,
+      color: 'from-amber-500 to-amber-700',
+    },
+    {
+      name: t('agents.claudecode.name'),
+      role: t('agents.claudecode.role'),
+      description: t('agents.claudecode.description'),
+      icon: Code,
+      color: 'from-rose-500 to-rose-700',
+    },
+    {
+      name: t('agents.strategy.name'),
+      role: t('agents.strategy.role'),
+      description: t('agents.strategy.description'),
+      icon: Target,
+      color: 'from-cyan-500 to-cyan-700',
+    },
+    {
+      name: t('agents.decision.name'),
+      role: t('agents.decision.role'),
+      description: t('agents.decision.description'),
+      icon: Scale,
+      color: 'from-indigo-500 to-indigo-700',
+    },
+  ];
+
   return (
     <section id="agents" className="py-24 bg-black relative">
       {/* Background */}
@@ -87,14 +90,14 @@ export function Agents() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
           >
-            智能体团队
+            {t('nav.agents')}
           </motion.span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6">
-            专业智能体
-            <span className="text-gradient"> 随时待命</span>
+            {t('agents.title')}
+            <span className="text-gradient"> {t('agents.titleHighlight')}</span>
           </h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            每个智能体都是领域专家，协同工作完成复杂任务
+            {t('agents.subtitle')}
           </p>
         </AnimatedSection>
 
@@ -120,7 +123,7 @@ export function Agents() {
                       </h3>
                       {agent.featured && (
                         <span className="px-2 py-0.5 text-xs bg-primary/20 text-primary rounded-full">
-                          核心
+                          Core
                         </span>
                       )}
                     </div>
@@ -138,7 +141,7 @@ export function Agents() {
         {/* Bottom Note */}
         <AnimatedSection className="text-center mt-12" delay={0.4}>
           <p className="text-gray-500 text-sm">
-            还有更多专业智能体持续加入中...
+            {t('agents.more')}
           </p>
         </AnimatedSection>
       </div>

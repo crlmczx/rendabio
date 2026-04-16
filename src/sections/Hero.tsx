@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { ArrowRight, Sparkles, Users } from 'lucide-react';
 import { GradientGlows } from '@/components/GradientGlow';
+import { useTranslation } from 'react-i18next';
 
 const containerVariants: Variants = {
   hidden: {},
@@ -26,6 +27,8 @@ const itemVariants: Variants = {
 };
 
 export function Hero() {
+  const { t } = useTranslation();
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
       {/* Background Effects */}
@@ -55,7 +58,7 @@ export function Hero() {
             className="mb-6 px-4 py-2 text-sm border-primary/30 bg-primary/10 text-primary-light"
           >
             <Sparkles className="w-4 h-4 mr-2" />
-            AI 多智能体协作平台
+            {t('hero.badge')}
           </Badge>
         </motion.div>
 
@@ -64,8 +67,8 @@ export function Hero() {
           variants={itemVariants}
           className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight"
         >
-          解锁你的{' '}
-          <span className="text-gradient">AI 智能体团队</span>
+          {t('hero.title')}{' '}
+          <span className="text-gradient">{t('hero.titleHighlight')}</span>
         </motion.h1>
 
         {/* Subtitle */}
@@ -73,7 +76,7 @@ export function Hero() {
           variants={itemVariants}
           className="text-lg sm:text-xl text-gray-400 max-w-2xl mx-auto mb-10 leading-relaxed"
         >
-          RendaBio 是专为知识工作者打造的多智能体平台，在营销、研究、开发等复杂业务场景中提升生产力
+          {t('hero.subtitle')}
         </motion.p>
 
         {/* CTA Buttons */}
@@ -85,7 +88,7 @@ export function Hero() {
             size="lg"
             className="bg-primary hover:bg-primary-light text-white px-8 py-6 text-lg rounded-xl group"
           >
-            免费开始
+            {t('hero.ctaPrimary')}
             <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </Button>
           <Button 
@@ -93,7 +96,7 @@ export function Hero() {
             variant="outline"
             className="border-gray-600 text-white hover:bg-white/5 px-8 py-6 text-lg rounded-xl"
           >
-            了解更多
+            {t('hero.ctaSecondary')}
           </Button>
         </motion.div>
 
@@ -112,7 +115,7 @@ export function Hero() {
               </div>
             ))}
           </div>
-          <span className="text-sm">已有 <span className="text-white font-medium">10,000+</span> 用户信赖</span>
+          <span className="text-sm">{t('hero.trustedBy', { count: '10,000+' })}</span>
         </motion.div>
 
         {/* Preview Card */}
@@ -144,10 +147,10 @@ export function Hero() {
               {/* Agent List Preview */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                 {[
-                  { name: 'Teamo', role: '指挥官', color: 'from-primary to-primary-dark' },
-                  { name: 'DeepResearch', role: '研究员', color: 'from-blue-500 to-blue-700' },
-                  { name: 'Craft', role: '创作专家', color: 'from-purple-500 to-purple-700' },
-                  { name: 'Analytics', role: '分析师', color: 'from-emerald-500 to-emerald-700' },
+                  { name: 'Teamo', role: 'Commander', color: 'from-primary to-primary-dark' },
+                  { name: 'DeepResearch', role: 'Researcher', color: 'from-blue-500 to-blue-700' },
+                  { name: 'Craft', role: 'Creator', color: 'from-purple-500 to-purple-700' },
+                  { name: 'Analytics', role: 'Analyst', color: 'from-emerald-500 to-emerald-700' },
                 ].map((agent, i) => (
                   <motion.div
                     key={agent.name}

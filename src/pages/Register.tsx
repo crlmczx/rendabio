@@ -8,6 +8,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { useAuth } from '@/contexts/AuthContext';
 import { Eye, EyeOff, Mail, Lock, User, ArrowRight, Sparkles, Check } from 'lucide-react';
 import { GradientGlows } from '@/components/GradientGlow';
+import { LanguageSwitcher } from '@/components/LanguageSwitcher';
+import { useTranslation } from 'react-i18next';
 
 export function Register() {
   const [name, setName] = useState('');
@@ -21,23 +23,24 @@ export function Register() {
   
   const { register } = useAuth();
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
 
     if (password !== confirmPassword) {
-      setError('两次输入的密码不一致');
+      setError('Passwords do not match');
       return;
     }
 
     if (password.length < 8) {
-      setError('密码至少需要8位字符');
+      setError('Password must be at least 8 characters');
       return;
     }
 
     if (!agreed) {
-      setError('请同意服务条款和隐私政策');
+      setError('Please agree to the terms and privacy policy');
       return;
     }
 
@@ -47,7 +50,7 @@ export function Register() {
       await register(name, email, password);
       navigate('/dashboard');
     } catch (err) {
-      setError('注册失败，请稍后重试');
+      setError('Registration failed, please try again later');
     } finally {
       setIsLoading(false);
     }
@@ -62,7 +65,7 @@ export function Register() {
     return strength;
   };
 
-  const strengthLabels = ['弱', '一般', '良好', '强'];
+  const strengthLabels = t('register.strength', { returnObjects: true }) as string[];
   const strengthColors = ['bg-red-500', 'bg-yellow-500', 'bg-blue-500', 'bg-green-500'];
 
   return (
@@ -78,6 +81,11 @@ export function Register() {
           backgroundSize: '60px 60px',
         }}
       />
+
+      {/* Language Switcher */}
+      <div className="absolute top-4 right-4 z-20">
+        <LanguageSwitcher />
+      </div>
 
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -100,9 +108,9 @@ export function Register() {
             <div className="mx-auto w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
               <Sparkles className="w-6 h-6 text-primary" />
             </div>
-            <CardTitle className="text-2xl text-white">创建账户</CardTitle>
+            <CardTitle className="text-2xl text-white">{t('register.title')}</CardTitle>
             <CardDescription className="text-gray-400">
-              开始您的 AI 智能体之旅
+              {t('register.subtitle')}
             </CardDescription>
           </CardHeader>
           
@@ -115,13 +123,13 @@ export function Register() {
               )}
 
               <div className="space-y-2">
-                <Label htmlFor="name" className="text-gray-300">姓名</Label>
+                <Label htmlFor="name" className="text-gray-300">{t('register.name')}</Label>
                 <div className="relative">
                   <User className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
                   <Input
                     id="name"
                     type="text"
-                    placeholder="您的姓名"
+                    placeholder="Your name"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     className="pl-10 bg-white/5 border-white/10 text-white placeholder:text-gray-500"
@@ -131,7 +139,7 @@ export function Register() {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="email" className="text-gray-300">邮箱</Label>
+                <Label htmlFor="email" className="text-gray-300">{t('register.email')}</Label>
                 <div className="relative">
                   <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
                   <Input
@@ -147,7 +155,7 @@ export function Register() {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="password" className="text-gray-300">密码</Label>
+                <Label htmlFor="password" className="text-gray-300">{t('register.password')}</Label>
                 <div className="relative">
                   <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
                   <Input
@@ -182,14 +190,14 @@ export function Register() {
                       ))}
                     </div>
                     <p className="text-xs text-gray-500">
-                      密码强度: {strengthLabels[passwordStrength() - 1] || '请输入密码'}
+                      {t('register.passwordStrength')}: {strengthLabels[passwordStrength() - 1] || 'Enter password'}
                     </p>
                   </div>
                 )}
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="confirmPassword" className="text-gray-300">确认密码</Label>
+                <Label htmlFor="confirmPassword" className="text-gray-300">{t('register.confirmPassword')}</Label>
                 <div className="relative">
                   <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
                   <Input
@@ -216,10 +224,10 @@ export function Register() {
                   className="mt-1 rounded bg-white/5 border-white/10"
                 />
                 <label htmlFor="agree" className="text-sm text-gray-400">
-                  我同意{' '}
-                  <Link to="/terms" className="text-primary hover:underline">服务条款</Link>
-                  {' '}和{' '}
-                  <Link to="/privacy" className="text-primary hover:underline">隐私政策</Link>
+                  {t('register.agree')}{' '}
+                  <Link to="/terms" className="text-primary hover:underline">{t('register.terms')}</Link>
+                  {' '}{t('login.and')}{' '}
+                  <Link to="/privacy" className="text-primary hover:underline">{t('register.privacy')}</Link>
                 </label>
               </div>
 
@@ -231,11 +239,11 @@ export function Register() {
                 {isLoading ? (
                   <span className="flex items-center gap-2">
                     <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                    创建账户中...
+                    {t('register.loading')}
                   </span>
                 ) : (
                   <span className="flex items-center gap-2">
-                    创建账户
+                    {t('register.submit')}
                     <ArrowRight className="w-4 h-4" />
                   </span>
                 )}
@@ -244,9 +252,9 @@ export function Register() {
 
             <div className="mt-6 text-center">
               <p className="text-gray-400 text-sm">
-                已有账户？{' '}
+                {t('register.hasAccount')}{' '}
                 <Link to="/login" className="text-primary hover:text-primary-light font-medium">
-                  立即登录
+                  {t('register.login')}
                 </Link>
               </p>
             </div>
@@ -257,7 +265,7 @@ export function Register() {
                 <div className="w-full border-t border-white/10" />
               </div>
               <div className="relative flex justify-center text-sm">
-                <span className="px-2 bg-surface text-gray-500">或使用以下方式注册</span>
+                <span className="px-2 bg-surface text-gray-500">{t('register.orRegisterWith')}</span>
               </div>
             </div>
 

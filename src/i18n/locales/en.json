@@ -1,0 +1,263 @@
+{
+  "nav": {
+    "product": "Product",
+    "agents": "Agents",
+    "pricing": "Pricing",
+    "docs": "Docs",
+    "login": "Login",
+    "getStarted": "Get Started",
+    "dashboard": "Dashboard"
+  },
+  "hero": {
+    "badge": "AI Multi-Agent Collaboration Platform",
+    "title": "Unlock Your",
+    "titleHighlight": "AI Agent Team",
+    "subtitle": "RendaBio is a multi-agent platform built for knowledge workers, boosting productivity in marketing, research, development, and other complex business scenarios.",
+    "ctaPrimary": "Get Started Free",
+    "ctaSecondary": "Learn More",
+    "trustedBy": "Trusted by {{count}} users"
+  },
+  "logos": {
+    "title": "Trusted by leading teams worldwide"
+  },
+  "features": {
+    "title": "Built for",
+    "titleHighlight": "Knowledge Workers",
+    "subtitle": "Integrating A2A + MCP dual protocols to build the next-generation multi-agent collaboration platform",
+    "multiAgent": {
+      "title": "Multi-Agent Collaboration",
+      "description": "Simulate real team division of labor, multiple specialized agents work together, automatically scheduling to complete complex tasks. Based on A2A protocol for efficient inter-agent communication."
+    },
+    "superSearch": {
+      "title": "Super Search & Write",
+      "description": "From task decomposition, multi-source retrieval to structured generation, providing a full-chain search and writing workflow. Supports real-time information acquisition and deep research."
+    },
+    "verification": {
+      "title": "Real-time Verification",
+      "description": "Multi-agent cross-verification, fact-checking, effectively suppressing hallucinations, ensuring accurate and reliable output. All conclusions are traceable to sources."
+    },
+    "stats": {
+      "accuracy": "Accuracy",
+      "efficiency": "Efficiency Boost",
+      "agents": "Specialized Agents",
+      "support": "24/7 Support"
+    }
+  },
+  "agents": {
+    "title": "Expert Agents",
+    "titleHighlight": "On Standby",
+    "subtitle": "Each agent is a domain expert, working together to complete complex tasks",
+    "teamo": {
+      "name": "Teamo",
+      "role": "Commander",
+      "description": "Responsible for task scheduling and team management, monitoring execution status, and reporting progress in a timely manner"
+    },
+    "deepresearch": {
+      "name": "DeepResearch",
+      "role": "Researcher",
+      "description": "Precise search and global information integration, providing comprehensive and detailed research reports"
+    },
+    "craft": {
+      "name": "Craft",
+      "role": "Content Creator",
+      "description": "Media content, creative planning, academic writing, evaluating and optimizing creative results"
+    },
+    "analytics": {
+      "name": "Analytics",
+      "role": "Data Analyst",
+      "description": "Data visualization, code processing, insight extraction, empowering data-driven decision making"
+    },
+    "brainstorm": {
+      "name": "Brainstorm",
+      "role": "Brainstorm Lead",
+      "description": "Creative thinking, strategic planning, organizing expert agents for brainstorming sessions"
+    },
+    "claudecode": {
+      "name": "Claude Code",
+      "role": "Coding Expert",
+      "description": "Code editing, execution, debugging, optimization, end-to-end cloud development experience"
+    },
+    "strategy": {
+      "name": "Strategy",
+      "role": "Strategy Consultant",
+      "description": "Business strategy, business consulting, systematic solutions for deep cognitive scenarios"
+    },
+    "decision": {
+      "name": "Decision",
+      "role": "Decision Advisor",
+      "description": "Complex decision consulting, McKinsey analysis methods, decomposing and solving decision challenges"
+    },
+    "more": "More specialized agents are continuously joining..."
+  },
+  "workflow": {
+    "title": "Five Simple Steps",
+    "titleHighlight": "to Complete Complex Tasks",
+    "subtitle": "No learning curve required, collaborate like working with a real human team",
+    "steps": {
+      "1": {
+        "title": "Input Task",
+        "description": "Describe your needs or upload files, tell RendaBio what you want to accomplish in natural language"
+      },
+      "2": {
+        "title": "Smart Decomposition",
+        "description": "AI automatically decomposes tasks and schedules the most suitable agent team"
+      },
+      "3": {
+        "title": "Parallel Execution",
+        "description": "Multiple specialized agents work together, each leveraging their strengths"
+      },
+      "4": {
+        "title": "Cross Verification",
+        "description": "Results are cross-verified to ensure accuracy and reliability"
+      },
+      "5": {
+        "title": "Output Results",
+        "description": "Get a complete, professional final report with traceable decision processes"
+      }
+    },
+    "demo": {
+      "user": "User",
+      "justNow": "Just now",
+      "message": "Help me analyze Tesla's Q2 2025 financial report and compare it with BYD",
+      "status": "RendaBio is scheduling the agent team..."
+    }
+  },
+  "usecases": {
+    "title": "Applicable to Various",
+    "titleHighlight": "Business Scenarios",
+    "subtitle": "Whether you're a consultant, market analyst, or content creator, RendaBio can help you",
+    "marketResearch": {
+      "title": "Market Research & Industry Analysis",
+      "description": "Automatically collect data, cross-verify, and generate in-depth research reports. Supports multi-source information integration, providing comprehensive market insights and competitive analysis.",
+      "features": ["Real-time Data Collection", "Multi-source Verification", "Visual Reports", "Trend Forecasting"],
+      "stat": "Research Efficiency Boost"
+    },
+    "contentCreation": {
+      "title": "Content Creation & Writing",
+      "description": "Automatically plan, research, and draft professional copy or academic papers. Full AI assistance from creative conception to final draft.",
+      "features": ["Smart Outline Generation", "Multi-style Writing", "Auto Citation", "Quality Assessment"],
+      "stat": "Time Saved on Creation"
+    },
+    "strategy": {
+      "title": "Business Strategy Planning",
+      "description": "Coordinate multiple agents to complete SWOT analysis, business plans, market entry strategies, and other complex business documents.",
+      "features": ["SWOT Analysis", "Competitive Strategy", "Financial Forecasting", "Risk Assessment"],
+      "stat": "Plan Approval Rate"
+    },
+    "dataAnalysis": {
+      "title": "Data Analysis & Visualization",
+      "description": "Process complex datasets and generate clear visual charts. Supports multiple data sources and custom analysis models.",
+      "features": ["Multi-source Data", "Auto Cleaning", "Smart Visualization", "Insight Extraction"],
+      "stat": "Report Generation Time"
+    },
+    "learnMore": "Learn More"
+  },
+  "pricing": {
+    "title": "Choose the Right",
+    "titleHighlight": "Plan for You",
+    "subtitle": "Flexible pricing plans to meet the needs of teams of all sizes",
+    "free": {
+      "name": "Free",
+      "price": "0",
+      "period": "month",
+      "description": "Perfect for individuals getting started",
+      "features": ["Basic agent access", "10 calls per day", "Community support", "Basic templates", "Standard response speed"],
+      "cta": "Get Started Free"
+    },
+    "pro": {
+      "name": "Pro",
+      "price": "99",
+      "period": "month",
+      "description": "For professionals and small teams",
+      "features": ["Full agent access", "100 calls per day", "Priority support", "Custom templates", "Fast response speed", "API access", "Team collaboration"],
+      "cta": "Upgrade Now",
+      "popular": "Popular"
+    },
+    "enterprise": {
+      "name": "Enterprise",
+      "price": "Custom",
+      "period": "",
+      "description": "For large teams and organizations",
+      "features": ["Unlimited calls", "Private deployment option", "Dedicated account manager", "SLA guarantee", "Custom agent development", "Advanced security compliance", "SSO single sign-on"],
+      "cta": "Contact Sales"
+    },
+    "note": "All plans include a 14-day free trial, no credit card required"
+  },
+  "cta": {
+    "badge": "Start Your AI Journey Today",
+    "title": "Ready to Boost Your",
+    "titleLine2": "Productivity?",
+    "subtitle": "Join 10,000+ users and experience the power of AI multi-agent collaboration",
+    "primary": "Get Started Free",
+    "secondary": "Book a Demo",
+    "features": {
+      "noCard": "No credit card required",
+      "freeTrial": "14-day free trial",
+      "cancel": "Cancel anytime"
+    }
+  },
+  "footer": {
+    "description": "An AI multi-agent collaboration platform built for knowledge workers, making complex tasks simple and efficient.",
+    "product": "Product",
+    "resources": "Resources",
+    "company": "Company",
+    "legal": "Legal",
+    "copyright": "© {{year}} RendaBio. All rights reserved.",
+    "status": "All systems operational"
+  },
+  "login": {
+    "title": "Welcome Back",
+    "subtitle": "Sign in to your RendaBio account",
+    "email": "Email",
+    "password": "Password",
+    "rememberMe": "Remember me",
+    "forgotPassword": "Forgot password?",
+    "submit": "Sign In",
+    "loading": "Signing in...",
+    "noAccount": "Don't have an account?",
+    "register": "Sign up now",
+    "orLoginWith": "Or sign in with",
+    "agreement": "By signing in, you agree to our",
+    "terms": "Terms of Service",
+    "and": "and",
+    "privacy": "Privacy Policy"
+  },
+  "register": {
+    "title": "Create Account",
+    "subtitle": "Start your AI agent journey",
+    "name": "Name",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "passwordStrength": "Password Strength",
+    "strength": ["Weak", "Fair", "Good", "Strong"],
+    "agree": "I agree to the",
+    "terms": "Terms of Service",
+    "privacy": "Privacy Policy",
+    "submit": "Create Account",
+    "loading": "Creating account...",
+    "hasAccount": "Already have an account?",
+    "login": "Sign in",
+    "orRegisterWith": "Or sign up with"
+  },
+  "dashboard": {
+    "welcome": "Welcome back, {{name}}!",
+    "subtitle": "What would you like to accomplish today?",
+    "stats": {
+      "conversations": "AI Conversations",
+      "tasks": "Tasks Completed",
+      "timeSaved": "Time Saved"
+    },
+    "quickStart": "Quick Start",
+    "account": "Account Info",
+    "plan": "Plan",
+    "callsRemaining": "Calls Remaining",
+    "joined": "Joined",
+    "settings": "Account Settings"
+  },
+  "language": {
+    "title": "Language",
+    "zh": "中文",
+    "en": "English"
+  }
+}

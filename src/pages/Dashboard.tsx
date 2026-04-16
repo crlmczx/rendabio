@@ -13,10 +13,13 @@ import {
   Crown,
   Sparkles
 } from 'lucide-react';
+import { LanguageSwitcher } from '@/components/LanguageSwitcher';
+import { useTranslation } from 'react-i18next';
 
 export function Dashboard() {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const handleLogout = () => {
     logout();
@@ -24,15 +27,15 @@ export function Dashboard() {
   };
 
   const stats = [
-    { label: 'AI 对话', value: '128', icon: MessageSquare, color: 'from-blue-500 to-blue-700' },
-    { label: '任务完成', value: '56', icon: Zap, color: 'from-emerald-500 to-emerald-700' },
-    { label: '节省时间', value: '24h', icon: BarChart3, color: 'from-purple-500 to-purple-700' },
+    { label: t('dashboard.stats.conversations'), value: '128', icon: MessageSquare, color: 'from-blue-500 to-blue-700' },
+    { label: t('dashboard.stats.tasks'), value: '56', icon: Zap, color: 'from-emerald-500 to-emerald-700' },
+    { label: t('dashboard.stats.timeSaved'), value: '24h', icon: BarChart3, color: 'from-purple-500 to-purple-700' },
   ];
 
   const agents = [
-    { name: 'Teamo', role: '指挥官', icon: Crown, color: 'from-primary to-primary-dark' },
-    { name: 'DeepResearch', role: '研究员', icon: Sparkles, color: 'from-blue-500 to-blue-700' },
-    { name: 'Craft', role: '创作专家', icon: MessageSquare, color: 'from-purple-500 to-purple-700' },
+    { name: 'Teamo', role: 'Commander', icon: Crown, color: 'from-primary to-primary-dark' },
+    { name: 'DeepResearch', role: 'Researcher', icon: Sparkles, color: 'from-blue-500 to-blue-700' },
+    { name: 'Craft', role: 'Creator', icon: MessageSquare, color: 'from-purple-500 to-purple-700' },
   ];
 
   return (
@@ -51,14 +54,16 @@ export function Dashboard() {
 
             {/* Navigation */}
             <nav className="hidden md:flex items-center gap-6">
-              <Link to="/dashboard" className="text-white text-sm">仪表盘</Link>
-              <Link to="/agents" className="text-gray-400 hover:text-white text-sm transition-colors">智能体</Link>
-              <Link to="/history" className="text-gray-400 hover:text-white text-sm transition-colors">历史记录</Link>
-              <Link to="/settings" className="text-gray-400 hover:text-white text-sm transition-colors">设置</Link>
+              <Link to="/dashboard" className="text-white text-sm">{t('nav.dashboard')}</Link>
+              <Link to="/agents" className="text-gray-400 hover:text-white text-sm transition-colors">{t('nav.agents')}</Link>
+              <Link to="/history" className="text-gray-400 hover:text-white text-sm transition-colors">History</Link>
+              <Link to="/settings" className="text-gray-400 hover:text-white text-sm transition-colors">{t('dashboard.settings')}</Link>
             </nav>
 
-            {/* User Menu */}
+            {/* Right Section */}
             <div className="flex items-center gap-4">
+              <LanguageSwitcher />
+              
               <div className="flex items-center gap-3">
                 {user?.avatar && (
                   <img 
@@ -69,6 +74,7 @@ export function Dashboard() {
                 )}
                 <span className="text-white text-sm hidden sm:block">{user?.name}</span>
               </div>
+              
               <Button 
                 variant="ghost" 
                 size="sm"
@@ -91,10 +97,10 @@ export function Dashboard() {
           className="mb-8"
         >
           <h1 className="text-3xl font-bold text-white mb-2">
-            欢迎回来，{user?.name}！
+            {t('dashboard.welcome', { name: user?.name })}
           </h1>
           <p className="text-gray-400">
-            今天想要完成什么任务？
+            {t('dashboard.subtitle')}
           </p>
         </motion.div>
 
@@ -134,7 +140,7 @@ export function Dashboard() {
           >
             <Card className="bg-surface border-border h-full">
               <CardHeader>
-                <CardTitle className="text-white">快速开始</CardTitle>
+                <CardTitle className="text-white">{t('dashboard.quickStart')}</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="grid sm:grid-cols-2 gap-4">
@@ -159,7 +165,7 @@ export function Dashboard() {
                   <div className="flex items-center gap-3">
                     <Sparkles className="w-5 h-5 text-primary" />
                     <p className="text-gray-300 text-sm">
-                      提示: 尝试输入 "帮我分析特斯拉财报" 开始您的第一个任务
+                      Tip: Try typing "Help me analyze Tesla's financial report" to start your first task
                     </p>
                   </div>
                 </div>
@@ -175,7 +181,7 @@ export function Dashboard() {
           >
             <Card className="bg-surface border-border h-full">
               <CardHeader>
-                <CardTitle className="text-white">账户信息</CardTitle>
+                <CardTitle className="text-white">{t('dashboard.account')}</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="flex items-center gap-4">
@@ -194,15 +200,15 @@ export function Dashboard() {
 
                 <div className="pt-4 border-t border-white/5 space-y-3">
                   <div className="flex items-center justify-between">
-                    <span className="text-gray-400 text-sm">套餐</span>
-                    <span className="text-primary text-sm font-medium">免费版</span>
+                    <span className="text-gray-400 text-sm">{t('dashboard.plan')}</span>
+                    <span className="text-primary text-sm font-medium">Free</span>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-gray-400 text-sm">剩余调用</span>
+                    <span className="text-gray-400 text-sm">{t('dashboard.callsRemaining')}</span>
                     <span className="text-white text-sm">8/10</span>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-gray-400 text-sm">注册时间</span>
+                    <span className="text-gray-400 text-sm">{t('dashboard.joined')}</span>
                     <span className="text-white text-sm">{new Date().toLocaleDateString()}</span>
                   </div>
                 </div>
@@ -210,7 +216,7 @@ export function Dashboard() {
                 <div className="pt-4">
                   <Button variant="outline" className="w-full border-white/10 text-white hover:bg-white/5">
                     <Settings className="w-4 h-4 mr-2" />
-                    账户设置
+                    {t('dashboard.settings')}
                   </Button>
                 </div>
               </CardContent>

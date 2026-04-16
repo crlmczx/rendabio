@@ -1,46 +1,49 @@
 import { motion } from 'framer-motion';
 import { TextCursor, MessageSquare, Users, CheckCircle, FileText } from 'lucide-react';
 import { AnimatedSection, StaggerContainer, StaggerItem } from '@/components/AnimatedSection';
-
-const steps = [
-  {
-    number: '01',
-    title: '输入任务',
-    description: '描述您的需求或上传文件，用自然语言告诉 RendaBio 您想要完成什么',
-    icon: TextCursor,
-    color: 'from-primary to-primary-dark',
-  },
-  {
-    number: '02',
-    title: '智能分解',
-    description: 'AI 自动分解任务并调度最合适的智能体团队',
-    icon: MessageSquare,
-    color: 'from-blue-500 to-blue-700',
-  },
-  {
-    number: '03',
-    title: '并行执行',
-    description: '多个专业智能体协同工作，各自发挥所长',
-    icon: Users,
-    color: 'from-purple-500 to-purple-700',
-  },
-  {
-    number: '04',
-    title: '交叉验证',
-    description: '结果互相验证，确保准确性和可靠性',
-    icon: CheckCircle,
-    color: 'from-emerald-500 to-emerald-700',
-  },
-  {
-    number: '05',
-    title: '输出成果',
-    description: '获得完整、专业的最终报告，可追溯每个决策过程',
-    icon: FileText,
-    color: 'from-amber-500 to-amber-700',
-  },
-];
+import { useTranslation } from 'react-i18next';
 
 export function Workflow() {
+  const { t } = useTranslation();
+
+  const steps = [
+    {
+      number: '01',
+      title: t('workflow.steps.1.title'),
+      description: t('workflow.steps.1.description'),
+      icon: TextCursor,
+      color: 'from-primary to-primary-dark',
+    },
+    {
+      number: '02',
+      title: t('workflow.steps.2.title'),
+      description: t('workflow.steps.2.description'),
+      icon: MessageSquare,
+      color: 'from-blue-500 to-blue-700',
+    },
+    {
+      number: '03',
+      title: t('workflow.steps.3.title'),
+      description: t('workflow.steps.3.description'),
+      icon: Users,
+      color: 'from-purple-500 to-purple-700',
+    },
+    {
+      number: '04',
+      title: t('workflow.steps.4.title'),
+      description: t('workflow.steps.4.description'),
+      icon: CheckCircle,
+      color: 'from-emerald-500 to-emerald-700',
+    },
+    {
+      number: '05',
+      title: t('workflow.steps.5.title'),
+      description: t('workflow.steps.5.description'),
+      icon: FileText,
+      color: 'from-amber-500 to-amber-700',
+    },
+  ];
+
   return (
     <section id="workflow" className="py-24 bg-black relative overflow-hidden">
       {/* Background */}
@@ -55,14 +58,14 @@ export function Workflow() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
           >
-            工作流程
+            {t('nav.docs')}
           </motion.span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6">
-            简单五步
-            <span className="text-gradient"> 完成复杂任务</span>
+            {t('workflow.title')}
+            <span className="text-gradient"> {t('workflow.titleHighlight')}</span>
           </h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            无需学习成本，像与真人团队协作一样简单
+            {t('workflow.subtitle')}
           </p>
         </AnimatedSection>
 
@@ -132,18 +135,18 @@ export function Workflow() {
                   <span className="text-primary font-bold">U</span>
                 </div>
                 <div>
-                  <div className="text-white font-medium">用户</div>
-                  <div className="text-gray-500 text-sm">刚刚</div>
+                  <div className="text-white font-medium">{t('workflow.demo.user')}</div>
+                  <div className="text-gray-500 text-sm">{t('workflow.demo.justNow')}</div>
                 </div>
               </div>
               <div className="bg-white/5 rounded-xl p-4 mb-4">
                 <p className="text-gray-300">
-                  "帮我分析特斯拉 2025 年 Q2 财报，并与比亚迪进行对比分析"
+                  "{t('workflow.demo.message')}"
                 </p>
               </div>
               <div className="flex items-center gap-2 text-sm text-gray-500">
                 <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                RendaBio 正在调度智能体团队...
+                {t('workflow.demo.status')}
               </div>
             </div>
           </div>

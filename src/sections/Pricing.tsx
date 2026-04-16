@@ -3,63 +3,44 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Check, Sparkles } from 'lucide-react';
 import { AnimatedSection, StaggerContainer, StaggerItem } from '@/components/AnimatedSection';
-
-const plans = [
-  {
-    name: '免费版',
-    price: '0',
-    period: '月',
-    description: '适合个人用户体验',
-    features: [
-      '基础智能体访问',
-      '每日 10 次调用',
-      '社区支持',
-      '基础模板',
-      '标准响应速度',
-    ],
-    cta: '免费开始',
-    ctaVariant: 'outline' as const,
-    popular: false,
-  },
-  {
-    name: '专业版',
-    price: '99',
-    period: '月',
-    description: '适合专业用户和小团队',
-    features: [
-      '全部智能体访问',
-      '每日 100 次调用',
-      '优先技术支持',
-      '自定义模板',
-      '快速响应速度',
-      'API 访问',
-      '团队协作功能',
-    ],
-    cta: '立即升级',
-    ctaVariant: 'default' as const,
-    popular: true,
-  },
-  {
-    name: '企业版',
-    price: '定制',
-    period: '',
-    description: '适合大型团队和企业',
-    features: [
-      '无限调用次数',
-      '私有化部署选项',
-      '专属客户经理',
-      'SLA 服务保障',
-      '定制智能体开发',
-      '高级安全合规',
-      'SSO 单点登录',
-    ],
-    cta: '联系销售',
-    ctaVariant: 'outline' as const,
-    popular: false,
-  },
-];
+import { useTranslation } from 'react-i18next';
 
 export function Pricing() {
+  const { t } = useTranslation();
+
+  const plans = [
+    {
+      name: t('pricing.free.name'),
+      price: t('pricing.free.price'),
+      period: t('pricing.free.period'),
+      description: t('pricing.free.description'),
+      features: t('pricing.free.features', { returnObjects: true }) as string[],
+      cta: t('pricing.free.cta'),
+      ctaVariant: 'outline' as const,
+      popular: false,
+    },
+    {
+      name: t('pricing.pro.name'),
+      price: t('pricing.pro.price'),
+      period: t('pricing.pro.period'),
+      description: t('pricing.pro.description'),
+      features: t('pricing.pro.features', { returnObjects: true }) as string[],
+      cta: t('pricing.pro.cta'),
+      ctaVariant: 'default' as const,
+      popular: true,
+    },
+    {
+      name: t('pricing.enterprise.name'),
+      price: t('pricing.enterprise.price'),
+      period: t('pricing.enterprise.period'),
+      description: t('pricing.enterprise.description'),
+      features: t('pricing.enterprise.features', { returnObjects: true }) as string[],
+      cta: t('pricing.enterprise.cta'),
+      ctaVariant: 'outline' as const,
+      popular: false,
+    },
+  ];
+
   return (
     <section id="pricing" className="py-24 bg-black relative">
       {/* Background */}
@@ -74,14 +55,14 @@ export function Pricing() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
           >
-            定价方案
+            {t('nav.pricing')}
           </motion.span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6">
-            选择适合您的
-            <span className="text-gradient"> 方案</span>
+            {t('pricing.title')}
+            <span className="text-gradient"> {t('pricing.titleHighlight')}</span>
           </h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            灵活的定价方案，满足不同规模团队的需求
+            {t('pricing.subtitle')}
           </p>
         </AnimatedSection>
 
@@ -99,7 +80,7 @@ export function Pricing() {
                     <div className="absolute -top-4 left-1/2 -translate-x-1/2">
                       <div className="flex items-center gap-1 px-4 py-1 bg-primary text-white text-sm font-medium rounded-full">
                         <Sparkles className="w-4 h-4" />
-                        推荐
+                        {t('pricing.pro.popular')}
                       </div>
                     </div>
                   )}
@@ -107,7 +88,7 @@ export function Pricing() {
                   <CardHeader className="pt-8 pb-4">
                     <h3 className="text-xl font-semibold text-white mb-2">{plan.name}</h3>
                     <div className="flex items-baseline gap-1 mb-2">
-                      {plan.price !== '定制' && <span className="text-gray-400 text-lg">¥</span>}
+                      {plan.price !== t('pricing.enterprise.price') && <span className="text-gray-400 text-lg">¥</span>}
                       <span className="text-4xl font-bold text-white">{plan.price}</span>
                       {plan.period && <span className="text-gray-400">/{plan.period}</span>}
                     </div>
@@ -146,7 +127,7 @@ export function Pricing() {
         {/* Note */}
         <AnimatedSection className="text-center mt-12" delay={0.4}>
           <p className="text-gray-500 text-sm">
-            所有方案均支持 14 天免费试用，无需信用卡
+            {t('pricing.note')}
           </p>
         </AnimatedSection>
       </div>

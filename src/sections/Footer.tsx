@@ -1,41 +1,44 @@
 import { motion } from 'framer-motion';
 import { Separator } from '@/components/ui/separator';
 import { Github, Twitter, Linkedin, Mail } from 'lucide-react';
-
-const footerLinks = {
-  产品: [
-    { name: '功能特性', href: '#features' },
-    { name: '智能体', href: '#agents' },
-    { name: '定价方案', href: '#pricing' },
-    { name: '更新日志', href: '#' },
-  ],
-  资源: [
-    { name: '文档中心', href: '#' },
-    { name: 'API 参考', href: '#' },
-    { name: '使用教程', href: '#' },
-    { name: '博客', href: '#' },
-  ],
-  公司: [
-    { name: '关于我们', href: '#' },
-    { name: '加入我们', href: '#' },
-    { name: '联系我们', href: '#' },
-    { name: '合作伙伴', href: '#' },
-  ],
-  法律: [
-    { name: '隐私政策', href: '#' },
-    { name: '服务条款', href: '#' },
-    { name: '安全合规', href: '#' },
-  ],
-};
-
-const socialLinks = [
-  { name: 'GitHub', icon: Github, href: '#' },
-  { name: 'Twitter', icon: Twitter, href: '#' },
-  { name: 'LinkedIn', icon: Linkedin, href: '#' },
-  { name: 'Email', icon: Mail, href: '#' },
-];
+import { useTranslation } from 'react-i18next';
 
 export function Footer() {
+  const { t } = useTranslation();
+
+  const footerLinks = {
+    [t('footer.product')]: [
+      { name: t('nav.product'), href: '#features' },
+      { name: t('nav.agents'), href: '#agents' },
+      { name: t('nav.pricing'), href: '#pricing' },
+      { name: 'Changelog', href: '#' },
+    ],
+    [t('footer.resources')]: [
+      { name: 'Documentation', href: '#' },
+      { name: 'API Reference', href: '#' },
+      { name: 'Tutorials', href: '#' },
+      { name: 'Blog', href: '#' },
+    ],
+    [t('footer.company')]: [
+      { name: 'About Us', href: '#' },
+      { name: 'Careers', href: '#' },
+      { name: 'Contact', href: '#' },
+      { name: 'Partners', href: '#' },
+    ],
+    [t('footer.legal')]: [
+      { name: 'Privacy Policy', href: '#' },
+      { name: 'Terms of Service', href: '#' },
+      { name: 'Security', href: '#' },
+    ],
+  };
+
+  const socialLinks = [
+    { name: 'GitHub', icon: Github, href: '#' },
+    { name: 'Twitter', icon: Twitter, href: '#' },
+    { name: 'LinkedIn', icon: Linkedin, href: '#' },
+    { name: 'Email', icon: Mail, href: '#' },
+  ];
+
   return (
     <footer className="bg-surface-dark border-t border-white/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -53,7 +56,7 @@ export function Footer() {
               <span className="text-white font-semibold text-xl">RendaBio</span>
             </motion.a>
             <p className="text-gray-500 text-sm mb-6 max-w-xs">
-              专为知识工作者打造的 AI 多智能体协作平台，让复杂任务变得简单高效。
+              {t('footer.description')}
             </p>
             {/* Social Links */}
             <div className="flex gap-3">
@@ -96,12 +99,12 @@ export function Footer() {
         {/* Bottom */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-gray-500 text-sm">
-            © {new Date().getFullYear()} RendaBio. All rights reserved.
+            {t('footer.copyright', { year: new Date().getFullYear() })}
           </p>
           <div className="flex items-center gap-6">
             <span className="text-gray-500 text-sm flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-              系统运行正常
+              {t('footer.status')}
             </span>
           </div>
         </div>

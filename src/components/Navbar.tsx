@@ -4,18 +4,21 @@ import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Menu, X, User } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
-
-const navLinks = [
-  { name: '产品', href: '#features' },
-  { name: '智能体', href: '#agents' },
-  { name: '定价', href: '#pricing' },
-  { name: '文档', href: '#workflow' },
-];
+import { LanguageSwitcher } from './LanguageSwitcher';
+import { useTranslation } from 'react-i18next';
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { isAuthenticated, user } = useAuth();
+  const { t } = useTranslation();
+
+  const navLinks = [
+    { name: t('nav.product'), href: '#features' },
+    { name: t('nav.agents'), href: '#agents' },
+    { name: t('nav.pricing'), href: '#pricing' },
+    { name: t('nav.docs'), href: '#workflow' },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -65,8 +68,12 @@ export function Navbar() {
             ))}
           </div>
 
-          {/* CTA Buttons */}
+          {/* Right Section */}
           <div className="hidden md:flex items-center gap-4">
+            {/* Language Switcher */}
+            <LanguageSwitcher />
+
+            {/* Auth Buttons */}
             {isAuthenticated ? (
               <Link to="/dashboard">
                 <div className="flex items-center gap-2 text-white hover:text-primary transition-colors">
@@ -87,14 +94,14 @@ export function Navbar() {
                     variant="ghost" 
                     className="text-gray-300 hover:text-white hover:bg-white/5"
                   >
-                    登录
+                    {t('nav.login')}
                   </Button>
                 </Link>
                 <Link to="/register">
                   <Button 
                     className="bg-primary hover:bg-primary-light text-white"
                   >
-                    开始使用
+                    {t('nav.getStarted')}
                   </Button>
                 </Link>
               </>
@@ -131,24 +138,30 @@ export function Navbar() {
                   {link.name}
                 </a>
               ))}
+              
+              {/* Mobile Language Switcher */}
+              <div className="py-2 border-t border-white/10">
+                <LanguageSwitcher />
+              </div>
+
               <div className="pt-4 border-t border-white/10 space-y-2">
                 {isAuthenticated ? (
                   <Link to="/dashboard" onClick={() => setIsMobileMenuOpen(false)}>
                     <Button className="w-full bg-primary text-white">
                       <User className="w-4 h-4 mr-2" />
-                      进入仪表盘
+                      {t('nav.dashboard')}
                     </Button>
                   </Link>
                 ) : (
                   <>
                     <Link to="/login" onClick={() => setIsMobileMenuOpen(false)}>
                       <Button variant="ghost" className="w-full text-gray-300">
-                        登录
+                        {t('nav.login')}
                       </Button>
                     </Link>
                     <Link to="/register" onClick={() => setIsMobileMenuOpen(false)}>
                       <Button className="w-full bg-primary text-white">
-                        开始使用
+                        {t('nav.getStarted')}
                       </Button>
                     </Link>
                   </>
