@@ -31,46 +31,46 @@ export function Features() {
   const academicFeatures = [
     {
       icon: GraduationCap,
-      title: '课题设计',
-      description: '博士、硕士研究生课题设计与开题报告撰写，智能体协助确定研究方向、撰写研究背景和意义。',
+      title: t('features.academic.topicDesign.title'),
+      description: t('features.academic.topicDesign.description'),
       gradient: 'from-purple-500/20 to-purple-500/5',
       link: 'https://www.home-for-researchers.com/#/exp_design',
-      linkText: 'design',
+      linkText: t('features.academic.topicDesign.link'),
     },
     {
       icon: FlaskConical,
-      title: '研究辅助',
-      description: '文献综述、实验设计、数据分析、研究方法选择，全流程科研辅助支持。',
+      title: t('features.academic.researchAssist.title'),
+      description: t('features.academic.researchAssist.description'),
       gradient: 'from-amber-500/20 to-amber-500/5',
     },
     {
       icon: Award,
-      title: '答辩准备',
-      description: '答辩PPT制作、答辩稿撰写、常见问题预测与回答准备，助力顺利通过答辩。',
+      title: t('features.academic.defensePrep.title'),
+      description: t('features.academic.defensePrep.description'),
       gradient: 'from-rose-500/20 to-rose-500/5',
     },
     {
       icon: FileText,
-      title: 'SCI论文撰写',
-      description: '从选题到发表，智能体协助完成论文结构规划、内容撰写、语言润色、投稿建议。',
+      title: t('features.academic.sciPaper.title'),
+      description: t('features.academic.sciPaper.description'),
       gradient: 'from-cyan-500/20 to-cyan-500/5',
     },
     {
       icon: ScrollText,
-      title: '基金标书撰写',
-      description: '国家自然科学基金、省市级基金、企业合作项目等各类科研项目申请书撰写。',
+      title: t('features.academic.grantWriting.title'),
+      description: t('features.academic.grantWriting.description'),
       gradient: 'from-indigo-500/20 to-indigo-500/5',
     },
     {
       icon: Search,
-      title: '学术搜索',
-      description: '跨数据库文献检索、研究热点分析、竞争对手研究、学术趋势预测。',
+      title: t('features.academic.academicSearch.title'),
+      description: t('features.academic.academicSearch.description'),
       gradient: 'from-teal-500/20 to-teal-500/5',
     },
     {
       icon: Dna,
-      title: '免疫细胞治疗',
-      description: 'CAR-T细胞治疗、NK细胞疗法、肿瘤免疫治疗等前沿生物医学研究支持，助力精准医疗突破。',
+      title: t('features.academic.immunotherapy.title'),
+      description: t('features.academic.immunotherapy.description'),
       gradient: 'from-green-500/20 to-green-500/5',
     },
   ];
@@ -144,14 +144,14 @@ export function Features() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
           >
-            学术研究
+            {t('features.academic.badge')}
           </motion.span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6">
-            为科研工作者
-            <span className="text-gradient"> 提供专业支持</span>
+            {t('features.academic.title')}
+            <span className="text-gradient"> {t('features.academic.titleHighlight')}</span>
           </h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            从课题设计到论文发表，全流程AI智能体辅助，让科研更高效
+            {t('features.academic.subtitle')}
           </p>
         </AnimatedSection>
 

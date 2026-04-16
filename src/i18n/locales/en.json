@@ -41,6 +41,41 @@
       "efficiency": "Efficiency Boost",
       "agents": "Specialized Agents",
       "support": "24/7 Support"
+    },
+    "academic": {
+      "badge": "Academic Research",
+      "title": "Professional Support for",
+      "titleHighlight": "Researchers",
+      "subtitle": "From research design to publication, full-process AI agent assistance makes research more efficient",
+      "topicDesign": {
+        "title": "Research Design",
+        "description": "PhD and Master's research topic design and proposal writing. AI agents assist in determining research directions, writing research backgrounds and significance.",
+        "link": "design"
+      },
+      "researchAssist": {
+        "title": "Research Assistance",
+        "description": "Literature review, experimental design, data analysis, research method selection, full-process research support."
+      },
+      "defensePrep": {
+        "title": "Defense Preparation",
+        "description": "Defense PPT creation, speech writing, common question prediction and answer preparation to help you pass your defense smoothly."
+      },
+      "sciPaper": {
+        "title": "SCI Paper Writing",
+        "description": "From topic selection to publication, AI agents assist with paper structure planning, content writing, language polishing, and submission advice."
+      },
+      "grantWriting": {
+        "title": "Grant Proposal Writing",
+        "description": "National Natural Science Foundation, provincial and municipal funds, enterprise cooperation projects, and various scientific research project application writing."
+      },
+      "academicSearch": {
+        "title": "Academic Search",
+        "description": "Cross-database literature retrieval, research hotspot analysis, competitor research, and academic trend prediction."
+      },
+      "immunotherapy": {
+        "title": "Immunotherapy",
+        "description": "CAR-T cell therapy, NK cell therapy, tumor immunotherapy and other cutting-edge biomedical research support, helping precision medicine breakthroughs."
+      }
     }
   },
   "agents": {
