@@ -1,4 +1,5 @@
 import { motion, type Variants } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { ArrowRight, Sparkles, Users } from 'lucide-react';
@@ -84,20 +85,24 @@ export function Hero() {
           variants={itemVariants}
           className="flex flex-col sm:flex-row gap-4 justify-center mb-12"
         >
-          <Button 
-            size="lg"
-            className="bg-primary hover:bg-primary-light text-white px-8 py-6 text-lg rounded-xl group"
-          >
-            {t('hero.ctaPrimary')}
-            <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-          </Button>
-          <Button 
-            size="lg"
-            variant="outline"
-            className="border-gray-600 text-white hover:bg-white/5 px-8 py-6 text-lg rounded-xl"
-          >
-            {t('hero.ctaSecondary')}
-          </Button>
+          <Link to="/register">
+            <Button 
+              size="lg"
+              className="bg-primary hover:bg-primary-light text-white px-8 py-6 text-lg rounded-xl group"
+            >
+              {t('hero.ctaPrimary')}
+              <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </Button>
+          </Link>
+          <Link to="/about">
+            <Button 
+              size="lg"
+              variant="outline"
+              className="border-gray-600 text-white hover:bg-white/5 px-8 py-6 text-lg rounded-xl"
+            >
+              {t('hero.ctaSecondary')}
+            </Button>
+          </Link>
         </motion.div>
 
         {/* Trust Indicator */}
