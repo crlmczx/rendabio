@@ -1,0 +1,109 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+@layer base {
+  :root {
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
+    --card: 220 13% 9%;
+    --card-foreground: 0 0% 100%;
+    --popover: 220 13% 9%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 262 50% 53%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 10%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 0 0% 10%;
+    --muted-foreground: 0 0% 62%;
+    --accent: 262 50% 53%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 215 14% 21%;
+    --input: 215 14% 21%;
+    --ring: 262 50% 53%;
+    --radius: 0.625rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(90deg, #6d48c3, #fff);
+  }
+  
+  .bg-gradient-purple {
+    background: linear-gradient(135deg, #6d48c3, #4a2d8a);
+  }
+  
+  .bg-gradient-glow {
+    background: radial-gradient(circle at 50% 50%, rgba(109, 72, 195, 0.15), transparent 70%);
+  }
+  
+  .border-gradient {
+    border-image: linear-gradient(135deg, #6d48c3, #4a2d8a) 1;
+  }
+  
+  .glow-purple {
+    box-shadow: 0 0 40px rgba(109, 72, 195, 0.3);
+  }
+  
+  .glow-purple-strong {
+    box-shadow: 0 0 60px rgba(109, 72, 195, 0.5);
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0d0d0d;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #444;
+}
+
+/* Selection color */
+::selection {
+  background: rgba(109, 72, 195, 0.4);
+  color: white;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
