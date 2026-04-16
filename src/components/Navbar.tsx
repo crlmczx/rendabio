@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, User } from 'lucide-react';
+import { useAuth } from '@/contexts/AuthContext';
 
 const navLinks = [
   { name: '产品', href: '#features' },
@@ -13,6 +15,7 @@ const navLinks = [
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { isAuthenticated, user } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -38,7 +41,7 @@ export function Navbar() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <motion.a 
-            href="#" 
+            href="/" 
             className="flex items-center gap-2"
             whileHover={{ scale: 1.02 }}
           >
@@ -62,19 +65,40 @@ export function Navbar() {
             ))}
           </div>
 
-          {/* CTA Button */}
+          {/* CTA Buttons */}
           <div className="hidden md:flex items-center gap-4">
-            <Button 
-              variant="ghost" 
-              className="text-gray-300 hover:text-white hover:bg-white/5"
-            >
-              登录
-            </Button>
-            <Button 
-              className="bg-primary hover:bg-primary-light text-white"
-            >
-              开始使用
-            </Button>
+            {isAuthenticated ? (
+              <Link to="/dashboard">
+                <div className="flex items-center gap-2 text-white hover:text-primary transition-colors">
+                  {user?.avatar && (
+                    <img 
+                      src={user.avatar} 
+                      alt={user.name} 
+                      className="w-8 h-8 rounded-full bg-white/10"
+                    />
+                  )}
+                  <span className="text-sm">{user?.name}</span>
+                </div>
+              </Link>
+            ) : (
+              <>
+                <Link to="/login">
+                  <Button 
+                    variant="ghost" 
+                    className="text-gray-300 hover:text-white hover:bg-white/5"
+                  >
+                    登录
+                  </Button>
+                </Link>
+                <Link to="/register">
+                  <Button 
+                    className="bg-primary hover:bg-primary-light text-white"
+                  >
+                    开始使用
+                  </Button>
+                </Link>
+              </>
+            )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -108,12 +132,27 @@ export function Navbar() {
                 </a>
               ))}
               <div className="pt-4 border-t border-white/10 space-y-2">
-                <Button variant="ghost" className="w-full text-gray-300">
-                  登录
-                </Button>
-                <Button className="w-full bg-primary text-white">
-                  开始使用
-                </Button>
+                {isAuthenticated ? (
+                  <Link to="/dashboard" onClick={() => setIsMobileMenuOpen(false)}>
+                    <Button className="w-full bg-primary text-white">
+                      <User className="w-4 h-4 mr-2" />
+                      进入仪表盘
+                    </Button>
+                  </Link>
+                ) : (
+                  <>
+                    <Link to="/login" onClick={() => setIsMobileMenuOpen(false)}>
+                      <Button variant="ghost" className="w-full text-gray-300">
+                        登录
+                      </Button>
+                    </Link>
+                    <Link to="/register" onClick={() => setIsMobileMenuOpen(false)}>
+                      <Button className="w-full bg-primary text-white">
+                        开始使用
+                      </Button>
+                    </Link>
+                  </>
+                )}
               </div>
             </div>
           </motion.div>
