@@ -1,12 +1,26 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Check, Sparkles } from 'lucide-react';
 import { AnimatedSection, StaggerContainer, StaggerItem } from '@/components/AnimatedSection';
+import { PaymentDialog } from '@/components/PaymentDialog';
 import { useTranslation } from 'react-i18next';
 
 export function Pricing() {
   const { t } = useTranslation();
+  const [paymentOpen, setPaymentOpen] = useState(false);
+  const [selectedPlan, setSelectedPlan] = useState({ name: '', price: '' });
+
+  const handleSubscribe = (plan: typeof plans[0]) => {
+    if (plan.name === t('pricing.free.name')) {
+      // Free plan - redirect to register
+      window.location.href = '/register';
+      return;
+    }
+    setSelectedPlan({ name: plan.name, price: plan.price });
+    setPaymentOpen(true);
+  };
 
   const plans = [
     {
@@ -108,6 +122,7 @@ export function Pricing() {
 
                     {/* CTA */}
                     <Button
+                      onClick={() => handleSubscribe(plan)}
                       className={`w-full ${
                         plan.popular
                           ? 'bg-primary hover:bg-primary-light text-white'
@@ -131,6 +146,14 @@ export function Pricing() {
           </p>
         </AnimatedSection>
       </div>
+
+      {/* Payment Dialog */}
+      <PaymentDialog
+        open={paymentOpen}
+        onOpenChange={setPaymentOpen}
+        planName={selectedPlan.name}
+        planPrice={selectedPlan.price}
+      />
     </section>
   );
 }

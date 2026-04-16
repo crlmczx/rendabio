@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Card, CardContent } from '@/components/ui/card';
-import { Users, Search, CheckCircle, GraduationCap, FileText, Award, FlaskConical, ScrollText } from 'lucide-react';
+import { Users, Search, CheckCircle, GraduationCap, FileText, Award, FlaskConical, ScrollText, Dna } from 'lucide-react';
 import { AnimatedSection, StaggerContainer, StaggerItem } from '@/components/AnimatedSection';
 import { useTranslation } from 'react-i18next';
 
@@ -34,6 +34,8 @@ export function Features() {
       title: '课题设计',
       description: '博士、硕士研究生课题设计与开题报告撰写，智能体协助确定研究方向、撰写研究背景和意义。',
       gradient: 'from-purple-500/20 to-purple-500/5',
+      link: 'https://www.home-for-researchers.com/#/exp_design',
+      linkText: 'design',
     },
     {
       icon: FlaskConical,
@@ -64,6 +66,12 @@ export function Features() {
       title: '学术搜索',
       description: '跨数据库文献检索、研究热点分析、竞争对手研究、学术趋势预测。',
       gradient: 'from-teal-500/20 to-teal-500/5',
+    },
+    {
+      icon: Dna,
+      title: '免疫细胞治疗',
+      description: 'CAR-T细胞治疗、NK细胞疗法、肿瘤免疫治疗等前沿生物医学研究支持，助力精准医疗突破。',
+      gradient: 'from-green-500/20 to-green-500/5',
     },
   ];
 
@@ -148,7 +156,7 @@ export function Features() {
         </AnimatedSection>
 
         {/* Academic Features Grid */}
-        <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+        <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-16">
           {academicFeatures.map((feature) => (
             <StaggerItem key={feature.title}>
               <motion.div
@@ -166,9 +174,24 @@ export function Features() {
                     <h3 className="text-xl font-semibold text-white mb-3">
                       {feature.title}
                     </h3>
-                    <p className="text-gray-400 leading-relaxed text-sm">
+                    <p className="text-gray-400 leading-relaxed text-sm mb-4">
                       {feature.description}
                     </p>
+
+                    {/* Link */}
+                    {feature.link && (
+                      <a
+                        href={feature.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center text-primary hover:text-primary-light text-sm font-medium transition-colors"
+                      >
+                        {feature.linkText}
+                        <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                      </a>
+                    )}
                   </CardContent>
                 </Card>
               </motion.div>

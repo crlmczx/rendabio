@@ -10,7 +10,11 @@ import {
   ArrowRight,
   Github,
   Twitter,
-  Mail
+  Mail,
+  MessageCircle,
+  Video,
+  FileText,
+  PlayCircle
 } from 'lucide-react';
 import { LanguageSwitcher } from '@/components/LanguageSwitcher';
 import { useAuth } from '@/contexts/AuthContext';
@@ -243,7 +247,7 @@ export function About() {
             <p className="text-gray-400 mb-8 max-w-xl mx-auto">
               有任何问题或建议？我们随时欢迎您的反馈。
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center flex-wrap">
               <a href="mailto:contact@rendabio.com">
                 <Button className="bg-primary hover:bg-primary-light text-white">
                   <Mail className="w-4 h-4 mr-2" />
@@ -262,6 +266,43 @@ export function About() {
                   Twitter
                 </Button>
               </a>
+            </div>
+            
+            {/* Chinese Social Media */}
+            <div className="mt-8 pt-8 border-t border-white/10">
+              <p className="text-gray-500 text-sm mb-4">关注我们的中文社交媒体</p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center flex-wrap">
+                <a href="#" target="_blank" rel="noopener noreferrer">
+                  <Button variant="outline" className="border-green-500/30 text-green-400 hover:bg-green-500/10 hover:text-green-300">
+                    <MessageCircle className="w-4 h-4 mr-2" />
+                    微信公众号
+                  </Button>
+                </a>
+                <a href="#" target="_blank" rel="noopener noreferrer">
+                  <Button variant="outline" className="border-black/30 text-gray-800 bg-white hover:bg-gray-100">
+                    <Video className="w-4 h-4 mr-2" />
+                    抖音
+                  </Button>
+                </a>
+                <a href="#" target="_blank" rel="noopener noreferrer">
+                  <Button variant="outline" className="border-red-500/30 text-red-400 hover:bg-red-500/10 hover:text-red-300">
+                    <FileText className="w-4 h-4 mr-2" />
+                    今日头条
+                  </Button>
+                </a>
+                <a href="#" target="_blank" rel="noopener noreferrer">
+                  <Button variant="outline" className="border-red-400/30 text-red-300 hover:bg-red-400/10 hover:text-red-200">
+                    <PlayCircle className="w-4 h-4 mr-2" />
+                    西瓜视频
+                  </Button>
+                </a>
+                <a href="#" target="_blank" rel="noopener noreferrer">
+                  <Button variant="outline" className="border-yellow-500/30 text-yellow-400 hover:bg-yellow-500/10 hover:text-yellow-300">
+                    <MessageCircle className="w-4 h-4 mr-2" />
+                    微博
+                  </Button>
+                </a>
+              </div>
             </div>
           </motion.div>
         </div>
