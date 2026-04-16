@@ -13,6 +13,12 @@ import { Footer } from '@/sections/Footer';
 import { Login } from '@/pages/Login';
 import { Register } from '@/pages/Register';
 import { Dashboard } from '@/pages/Dashboard';
+import { Articles } from '@/pages/Articles';
+import { CreateArticle } from '@/pages/CreateArticle';
+import { Files } from '@/pages/Files';
+import { Settings } from '@/pages/Settings';
+import { About } from '@/pages/About';
+import { SearchPage } from '@/pages/Search';
 
 // 首页组件
 function Home() {
@@ -75,6 +81,7 @@ function PublicRoute({ children }: { children: React.ReactNode }) {
 function AppRoutes() {
   return (
     <Routes>
+      {/* Public Routes */}
       <Route path="/" element={<Home />} />
       <Route 
         path="/login" 
@@ -92,6 +99,10 @@ function AppRoutes() {
           </PublicRoute>
         } 
       />
+      <Route path="/about" element={<About />} />
+      <Route path="/search" element={<SearchPage />} />
+      
+      {/* Protected Routes */}
       <Route 
         path="/dashboard" 
         element={
@@ -100,6 +111,49 @@ function AppRoutes() {
           </ProtectedRoute>
         } 
       />
+      <Route 
+        path="/articles" 
+        element={
+          <ProtectedRoute>
+            <Articles />
+          </ProtectedRoute>
+        } 
+      />
+      <Route 
+        path="/articles/create" 
+        element={
+          <ProtectedRoute>
+            <CreateArticle />
+          </ProtectedRoute>
+        } 
+      />
+      <Route 
+        path="/articles/:id/edit" 
+        element={
+          <ProtectedRoute>
+            <CreateArticle />
+          </ProtectedRoute>
+        } 
+      />
+      <Route 
+        path="/files" 
+        element={
+          <ProtectedRoute>
+            <Files />
+          </ProtectedRoute>
+        } 
+      />
+      <Route 
+        path="/settings" 
+        element={
+          <ProtectedRoute>
+            <Settings />
+          </ProtectedRoute>
+        } 
+      />
+      
+      {/* Fallback */}
+      <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );
 }
