@@ -32,6 +32,16 @@ interface Article {
 
 const mockArticles: Article[] = [
   {
+    id: '5',
+    title: 'Teamo Agent：AI多智能体平台如何重塑企业工作流',
+    excerpt: 'Teamo Agent 是一个革命性的AI多智能体协作平台，通过多个专业化AI智能体的协同工作，为企业提供95%+的准确率和50%-90%的效率提升。',
+    author: 'RendaBio Team',
+    createdAt: '2026-05-02',
+    views: 0,
+    tags: ['AI智能体', '多智能体', '企业效率', '团队协作', '数字化转型'],
+    status: 'published',
+  },
+  {
     id: '1',
     title: '基于深度学习的自然语言处理研究进展',
     excerpt: '本文综述了近年来深度学习在自然语言处理领域的最新进展，包括Transformer架构、预训练语言模型等...',

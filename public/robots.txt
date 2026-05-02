@@ -1,0 +1,17 @@
+# robots.txt for RendaBio
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://www.rendabio.com/sitemap.xml
+
+# Disallow protected routes
+Disallow: /dashboard
+Disallow: /articles/create
+Disallow: /articles/*/edit
+Disallow: /files
+Disallow: /settings
+
+# Crawl-delay (optional)
+Crawl-delay: 1
