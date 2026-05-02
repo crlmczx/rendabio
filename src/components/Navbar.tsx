@@ -18,6 +18,8 @@ export function Navbar() {
     { name: t('nav.agents'), href: '#agents' },
     { name: t('nav.pricing'), href: '#pricing' },
     { name: t('nav.docs'), href: '#workflow' },
+    { name: 'Teamo Agent', href: '/teamoteam.html', external: true },
+    { name: '案例研究', href: '/teamoteam-use-cases.html', external: true },
   ];
 
   useEffect(() => {
@@ -56,16 +58,30 @@ export function Navbar() {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <motion.a
-                key={link.name}
-                href={link.href}
-                className="text-sm text-gray-300 hover:text-white transition-colors"
-                whileHover={{ y: -1 }}
-              >
-                {link.name}
-              </motion.a>
-            ))}
+            {navLinks.map((link) => {
+              if (link.external) {
+                return (
+                  <motion.a
+                    key={link.name}
+                    href={link.href}
+                    className="text-sm text-gray-300 hover:text-white transition-colors"
+                    whileHover={{ y: -1 }}
+                  >
+                    {link.name}
+                  </motion.a>
+                );
+              }
+              return (
+                <motion.a
+                  key={link.name}
+                  href={link.href}
+                  className="text-sm text-gray-300 hover:text-white transition-colors"
+                  whileHover={{ y: -1 }}
+                >
+                  {link.name}
+                </motion.a>
+              );
+            })}
           </div>
 
           {/* Right Section */}
