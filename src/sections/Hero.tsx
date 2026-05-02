@@ -54,9 +54,9 @@ export function Hero() {
       >
         {/* Badge */}
         <motion.div variants={itemVariants}>
-          <Badge 
-            variant="outline" 
-            className="mb-6 px-4 py-2 text-sm border-primary/30 bg-primary/10 text-primary-light"
+          <Badge
+            variant="outline"
+            className="mb-6 px-4 py-2 text-base border-primary/30 bg-primary/10 text-primary-light"
           >
             <Sparkles className="w-4 h-4 mr-2" />
             {t('hero.badge')}
@@ -66,7 +66,7 @@ export function Hero() {
         {/* Main Heading */}
         <motion.h1
           variants={itemVariants}
-          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight"
+          className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white mb-6 leading-tight"
         >
           {t('hero.title')}{' '}
           <span className="text-gradient">{t('hero.titleHighlight')}</span>
@@ -75,7 +75,7 @@ export function Hero() {
         {/* Subtitle */}
         <motion.p
           variants={itemVariants}
-          className="text-lg sm:text-xl text-gray-400 max-w-2xl mx-auto mb-10 leading-relaxed"
+          className="text-xl sm:text-2xl text-gray-400 max-w-2xl mx-auto mb-10 leading-relaxed"
         >
           {t('hero.subtitle')}
         </motion.p>
@@ -86,19 +86,19 @@ export function Hero() {
           className="flex flex-col sm:flex-row gap-4 justify-center mb-12"
         >
           <Link to="/register">
-            <Button 
+            <Button
               size="lg"
-              className="bg-primary hover:bg-primary-light text-white px-8 py-6 text-lg rounded-xl group"
+              className="bg-primary hover:bg-primary-light text-white px-8 py-6 text-xl rounded-xl group"
             >
               {t('hero.ctaPrimary')}
               <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Button>
           </Link>
           <Link to="/about">
-            <Button 
+            <Button
               size="lg"
               variant="outline"
-              className="border-gray-600 text-white hover:bg-white/5 px-8 py-6 text-lg rounded-xl"
+              className="border-gray-600 text-white hover:bg-white/5 px-8 py-6 text-xl rounded-xl"
             >
               {t('hero.ctaSecondary')}
             </Button>

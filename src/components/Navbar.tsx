@@ -64,7 +64,7 @@ export function Navbar() {
                   <motion.a
                     key={link.name}
                     href={link.href}
-                    className="text-sm text-gray-300 hover:text-white transition-colors"
+                    className="text-base text-gray-300 hover:text-white transition-colors"
                     whileHover={{ y: -1 }}
                   >
                     {link.name}
@@ -75,7 +75,7 @@ export function Navbar() {
                 <motion.a
                   key={link.name}
                   href={link.href}
-                  className="text-sm text-gray-300 hover:text-white transition-colors"
+                  className="text-base text-gray-300 hover:text-white transition-colors"
                   whileHover={{ y: -1 }}
                 >
                   {link.name}
@@ -100,22 +100,22 @@ export function Navbar() {
                       className="w-8 h-8 rounded-full bg-white/10"
                     />
                   )}
-                  <span className="text-sm">{user?.name}</span>
+                    <span className="text-base">{user?.name}</span>
                 </div>
               </Link>
             ) : (
               <>
                 <Link to="/login">
-                  <Button 
-                    variant="ghost" 
-                    className="text-gray-300 hover:text-white hover:bg-white/5"
+                  <Button
+                    variant="ghost"
+                    className="text-gray-300 hover:text-white hover:bg-white/5 text-base"
                   >
                     {t('nav.login')}
                   </Button>
                 </Link>
                 <Link to="/register">
-                  <Button 
-                    className="bg-primary hover:bg-primary-light text-white"
+                  <Button
+                    className="bg-primary hover:bg-primary-light text-white text-base"
                   >
                     {t('nav.getStarted')}
                   </Button>
@@ -148,7 +148,7 @@ export function Navbar() {
                 <a
                   key={link.name}
                   href={link.href}
-                  className="block text-gray-300 hover:text-white py-2"
+                  className="block text-gray-300 hover:text-white py-2 text-lg"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {link.name}
