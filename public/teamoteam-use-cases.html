@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Teamo Agent 案例研究 - 九大行业实战应用</title>
     <meta name="description" content="探索 Teamo Agent 在私募股权、学术研究、法律服务、金融咨询等九大行业的成功案例，真实数据展示效率提升。">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -13,10 +14,68 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             line-height: 1.6;
-            color: #333;
-            background: #f7fafc;
+            color: #1a202c;
+            background: linear-gradient(135deg, #48bb78 0%, #38a169 50%, #2f855a 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* 动态背景 */
+        .background-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(-45deg, #48bb78, #38a169, #2f855a, #276749);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            z-index: -1;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* 粒子效果 */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 50%;
+            animation: float 20s infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-1000px) rotate(720deg);
+                opacity: 0;
+            }
         }
 
         .container {
@@ -25,13 +84,21 @@
             padding: 0 20px;
         }
 
-        /* 导航栏 */
+        /* 导航栏 - 玻璃态效果 */
         nav {
-            background: white;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             position: sticky;
             top: 0;
             z-index: 100;
+            transition: all 0.3s ease;
+        }
+
+        nav:hover {
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
         }
 
         .nav-content {
@@ -42,10 +109,16 @@
         }
 
         .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #3182ce;
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: white;
             text-decoration: none;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
         }
 
         .nav-links {
@@ -54,199 +127,467 @@
         }
 
         .nav-links a {
-            color: #4a5568;
+            color: white;
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 600;
+            font-size: 1rem;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: white;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
         }
 
         .nav-links a:hover {
-            color: #3182ce;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
         }
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
-            color: white;
-            padding: 3rem 0;
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-align: center;
+            color: white;
+            padding: 4rem 0;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0.5;
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.2);
+                opacity: 0.8;
+            }
         }
 
         .hero h1 {
-            font-size: 2.5rem;
+            font-size: 4rem;
+            font-weight: 900;
             margin-bottom: 1rem;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            animation: fadeInUp 1s ease;
+            background: linear-gradient(135deg, #fff 0%, #e0e0e0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .hero p {
-            font-size: 1.3rem;
+            font-size: 2rem;
             margin-bottom: 2rem;
+            opacity: 0.95;
+            animation: fadeInUp 1s ease 0.2s backwards;
+            font-weight: 300;
         }
 
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 按钮 - 霓虹按钮效果 */
         .btn {
             display: inline-block;
-            padding: 0.75rem 1.5rem;
-            background: white;
-            color: #48bb78;
+            padding: 1rem 2.5rem;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
             text-decoration: none;
-            border-radius: 0.5rem;
-            font-weight: 600;
-            transition: transform 0.2s;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 1s ease 0.4s backwards;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: all 0.6s ease;
+        }
+
+        .btn:hover::before {
+            width: 300px;
+            height: 300px;
         }
 
         .btn:hover {
-            transform: scale(1.05);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.5);
         }
 
         /* 内容区域 */
         .content {
-            padding: 2rem 0;
+            padding: 4rem 0;
         }
 
         .section {
-            background: white;
-            padding: 2rem;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 3rem;
             margin-bottom: 2rem;
-            border-radius: 0.5rem;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.3);
         }
 
         h2 {
-            color: #2d3748;
-            margin-bottom: 1.5rem;
-            font-size: 2rem;
+            color: white;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+            font-weight: 800;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            background: linear-gradient(135deg, #fff 0%, #e0e0e0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         h3 {
-            color: #4a5568;
+            color: white;
             margin: 1.5rem 0 1rem;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
+            font-weight: 700;
         }
 
         h4 {
-            color: #2d3748;
+            color: white;
             margin: 1rem 0 0.5rem;
-            font-size: 1.25rem;
+            font-size: 1.3rem;
+            font-weight: 600;
         }
 
         p {
             margin-bottom: 1rem;
-            color: #4a5568;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1rem;
+            line-height: 1.8;
         }
 
-        /* 案例卡片 */
+        /* 案例卡片 - 3D 效果 */
         .case-study {
             margin-bottom: 3rem;
-            padding: 2rem;
-            background: #f7fafc;
-            border-radius: 0.5rem;
-            border-left: 4px solid #48bb78;
+            padding: 2.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            border-left: 5px solid rgba(255, 255, 255, 0.5);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .case-study::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #48bb78, #38a169);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .case-study:hover::before {
+            transform: scaleX(1);
+        }
+
+        .case-study:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.15);
+            border-left-color: #48bb78;
         }
 
         .case-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
             flex-wrap: wrap;
             gap: 1rem;
+            position: relative;
+            z-index: 1;
         }
 
         .case-number {
-            background: #48bb78;
+            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
             color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 2rem;
-            font-weight: 600;
+            padding: 0.6rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(72, 187, 120, 0.4);
+            position: relative;
+            z-index: 1;
         }
 
         .case-subsections {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 1.5rem;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
         }
 
         .case-subsection {
-            background: white;
-            padding: 1rem;
-            border-radius: 0.5rem;
-            border-top: 3px solid #48bb78;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border-top: 4px solid #48bb78;
+            transition: all 0.3s ease;
+        }
+
+        .case-subsection:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
         }
 
         .case-subsection h4 {
-            color: #48bb78;
-            margin-bottom: 0.5rem;
+            color: white;
+            margin-bottom: 0.8rem;
+            font-size: 1.2rem;
+        }
+
+        .case-subsection p {
+            position: relative;
+            z-index: 1;
         }
 
         /* 表格样式 */
         table {
             width: 100%;
             border-collapse: collapse;
-            margin: 1.5rem 0;
-            background: white;
+            margin: 2rem 0;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            overflow: hidden;
         }
 
         th, td {
-            padding: 0.75rem;
+            padding: 1rem;
             text-align: left;
-            border-bottom: 1px solid #e2e8f0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.9);
         }
 
         th {
-            background: #f7fafc;
-            font-weight: 600;
-            color: #2d3748;
+            background: rgba(255, 255, 255, 0.15);
+            font-weight: 700;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 0.9rem;
+        }
+
+        tr {
+            transition: all 0.3s ease;
         }
 
         tr:hover {
-            background: #f7fafc;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
         }
 
         .improvement {
-            color: #48bb78;
-            font-weight: 600;
+            color: #68d391;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
         }
 
         /* 引用样式 */
         blockquote {
-            border-left: 4px solid #48bb78;
-            padding-left: 1rem;
-            margin: 1.5rem 0;
+            border-left: 4px solid rgba(255, 255, 255, 0.5);
+            padding: 1.5rem;
+            margin: 2rem 0;
             font-style: italic;
-            color: #4a5568;
-            background: #f0fff4;
-            padding: 1rem;
-            border-radius: 0.25rem;
+            color: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 15px;
+            position: relative;
+        }
+
+        blockquote::before {
+            content: '"';
+            position: absolute;
+            top: -15px;
+            left: 15px;
+            font-size: 4rem;
+            color: rgba(255, 255, 255, 0.2);
+            font-family: Georgia, serif;
+        }
+
+        blockquote p {
+            position: relative;
+            z-index: 1;
         }
 
         /* 总结部分 */
         .summary {
-            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+            background: linear-gradient(135deg, rgba(72, 187, 120, 0.3) 0%, rgba(56, 161, 105, 0.3) 100%);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
             color: white;
-            padding: 2rem;
-            border-radius: 0.5rem;
-            margin-top: 2rem;
+            padding: 3rem;
+            border-radius: 20px;
+            margin-top: 3rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
         }
 
         .summary h2 {
             color: white;
+            margin-bottom: 1.5rem;
         }
 
         /* 页脚 */
         footer {
-            background: #2d3748;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             color: white;
-            padding: 2rem 0;
+            padding: 3rem 0;
             text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        footer p {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* 回到顶部按钮 */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            z-index: 99;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        .back-to-top.show {
+            display: flex;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .back-to-top:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        /* 滚动动画 */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in-section.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* 响应式设计 */
         @media (max-width: 768px) {
             .hero h1 {
-                font-size: 2rem;
+                font-size: 2.5rem;
             }
 
             .hero p {
-                font-size: 1.2rem;
+                font-size: 1.5rem;
             }
 
             .nav-links {
@@ -259,48 +600,38 @@
 
             table {
                 font-size: 14px;
-            }
-
-            th, td {
-                padding: 0.5rem;
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
             }
 
             .case-header {
                 flex-direction: column;
                 align-items: flex-start;
             }
-        }
 
-        /* 回到顶部按钮 */
-        .back-to-top {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: #48bb78;
-            color: white;
-            width: 50px;
-            height: 50px;
-            border: none;
-            border-radius: 50%;
-            cursor: pointer;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-            z-index: 99;
-        }
+            .section {
+                padding: 2rem 1.5rem;
+            }
 
-        .back-to-top.show {
-            display: flex;
-        }
+            h2 {
+                font-size: 2rem;
+            }
 
-        .back-to-top:hover {
-            background: #38a169;
+            .btn {
+                padding: 0.8rem 2rem;
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- 动态背景 -->
+    <div class="background-animation"></div>
+
+    <!-- 粒子效果 -->
+    <div class="particles" id="particles"></div>
+
     <nav>
         <div class="container nav-content">
             <a href="/" class="logo">RendaBio</a>
@@ -309,7 +640,7 @@
                 <a href="/#agents">Agents</a>
                 <a href="/#pricing">Pricing</a>
                 <a href="/#workflow">Docs</a>
-                <a href="/teamoteam">Teamo Agent</a>
+                <a href="/teamoteam.html">Teamo Agent</a>
                 <a href="/register">Get Started</a>
             </div>
         </div>
@@ -324,12 +655,12 @@
     </div>
 
     <div class="container content">
-        <div class="section">
+        <div class="section fade-in-section">
             <h2>案例概览</h2>
             <p>Teamo Agent 已经服务了来自多个行业的客户，帮助他们显著提升工作效率、降低成本、加速决策。以下是九大行业的典型应用案例。</p>
         </div>
 
-        <div class="case-study">
+        <div class="case-study fade-in-section">
             <div class="case-header">
                 <h3>案例一：私募股权投资</h3>
                 <span class="case-number">案例 01</span>
@@ -337,22 +668,22 @@
 
             <div class="case-subsections">
                 <div class="case-subsection">
-                    <h4>客户背景</h4>
+                    <h4>💼 客户背景</h4>
                     <p>某中型私募股权基金，专注于科技初创公司投资，年投资规模约2亿美元。</p>
                 </div>
 
                 <div class="case-subsection">
-                    <h4>面临挑战</h4>
+                    <h4>⚠️ 面临挑战</h4>
                     <p>传统尽职调查需要6周时间，数据分散在多个来源，风险评估依赖人工经验。</p>
                 </div>
 
                 <div class="case-subsection">
-                    <h4>解决方案</h4>
+                    <h4>💡 解决方案</h4>
                     <p>采用 Teamo Agent 的 AI尽职调查解决方案，包含4个专业智能体。</p>
                 </div>
             </div>
 
-            <h4>实施效果</h4>
+            <h4>📊 实施效果</h4>
             <table>
                 <thead>
                     <tr>
@@ -396,7 +727,7 @@
             </blockquote>
         </div>
 
-        <div class="case-study">
+        <div class="case-study fade-in-section">
             <div class="case-header">
                 <h3>案例二：学术研究</h3>
                 <span class="case-number">案例 02</span>
@@ -404,22 +735,22 @@
 
             <div class="case-subsections">
                 <div class="case-subsection">
-                    <h4>客户背景</h4>
+                    <h4>🎓 客户背景</h4>
                     <p>某顶尖大学医学院，专注于肿瘤免疫治疗研究。</p>
                 </div>
 
                 <div class="case-subsection">
-                    <h4>面临挑战</h4>
+                    <h4>⚠️ 面临挑战</h4>
                     <p>文献综述需要阅读200+篇论文，耗时8周以上，研究热点快速变化。</p>
                 </div>
 
                 <div class="case-subsection">
-                    <h4>解决方案</h4>
+                    <h4>💡 解决方案</h4>
                     <p>采用 Teamo Agent 的 AI文献综述解决方案，智能完成文献检索和分析。</p>
                 </div>
             </div>
 
-            <h4>实施效果</h4>
+            <h4>📊 实施效果</h4>
             <table>
                 <thead>
                     <tr>
@@ -463,7 +794,7 @@
             </blockquote>
         </div>
 
-        <div class="case-study">
+        <div class="case-study fade-in-section">
             <div class="case-header">
                 <h3>案例三：SaaS初创公司</h3>
                 <span class="case-number">案例 03</span>
@@ -471,22 +802,22 @@
 
             <div class="case-subsections">
                 <div class="case-subsection">
-                    <h4>客户背景</h4>
+                    <h4>🚀 客户背景</h4>
                     <p>某B2B SaaS初创公司，专注于企业协作工具，正在准备A轮融资。</p>
                 </div>
 
                 <div class="case-subsection">
-                    <h4>面临挑战</h4>
+                    <h4>⚠️ 面临挑战</h4>
                     <p>需要快速了解市场规模，传统市场研究需要3个月，缺乏专业分析团队。</p>
                 </div>
 
                 <div class="case-subsection">
-                    <h4>解决方案</h4>
+                    <h4>💡 解决方案</h4>
                     <p>采用 Teamo Agent 的 AI市场研究解决方案，72小时完成深度调研。</p>
                 </div>
             </div>
 
-            <h4>实施效果</h4>
+            <h4>📊 实施效果</h4>
             <table>
                 <thead>
                     <tr>
@@ -504,84 +835,90 @@
                         <td class="improvement">↓ 92%</td>
                     </tr>
                     <tr>
-                        <td>数据准确性</td>
-                        <td>65%</td>
-                        <td>90%</td>
-                        <td class="improvement">↑ 38%</td>
+                        <td>数据来源</td>
+                        <td>单一</td>
+                        <td>多元化</td>
+                        <td class="improvement">↑ 300%</td>
                     </tr>
                     <tr>
-                        <td>投资人信心</td>
-                        <td>中等</td>
-                        <td>高</td>
-                        <td class="improvement">↑ 150%</td>
+                        <td>分析深度</td>
+                        <td>表面</td>
+                        <td>深入</td>
+                        <td class="improvement">↑ 400%</td>
                     </tr>
                     <tr>
                         <td>融资成功率</td>
                         <td>30%</td>
-                        <td>60%</td>
-                        <td class="improvement">↑ 100%</td>
+                        <td>70%</td>
+                        <td class="improvement">↑ 133%</td>
                     </tr>
                 </tbody>
             </table>
 
             <blockquote>
-                <p>"在A轮融资的关键时刻，Teamo Agent 让我们用3个月竞争对手的资源完成了深度市场研究。投资人对我们市场的了解程度印象深刻。"</p>
-                <p><strong>—— CEO，王先生</strong></p>
+                <p>"72小时完成的市场调研质量远超预期，投资人对我们展现的专业度印象深刻。这直接帮助我们成功完成了A轮融资。"</p>
+                <p><strong>—— CEO，王女士</strong></p>
             </blockquote>
         </div>
 
-        <div class="summary">
-            <h2>跨行业价值总结</h2>
-            <table style="background: white; color: #333;">
-                <thead>
-                    <tr>
-                        <th>价值维度</th>
-                        <th>平均提升</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>效率提升</strong></td>
-                        <td class="improvement">85% ↓ 时间</td>
-                    </tr>
-                    <tr>
-                        <td><strong>准确率提升</strong></td>
-                        <td class="improvement">25% ↑</td>
-                    </tr>
-                    <tr>
-                        <td><strong>成本节约</strong></td>
-                        <td class="improvement">30% ↓</td>
-                    </tr>
-                    <tr>
-                        <td><strong>客户满意度</strong></td>
-                        <td class="improvement">35% ↑</td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <h3 style="margin-top: 2rem; color: white;">成功关键因素</h3>
-            <ul style="margin-top: 1rem; margin-left: 2rem;">
-                <li><strong>多智能体协同</strong>: 不同专业智能体各司其职，交叉验证</li>
-                <li><strong>行业深度定制</strong>: 每个解决方案都经过行业专家验证</li>
-                <li><strong>无缝集成</strong>: 轻松融入现有工作流程</li>
-                <li><strong>持续优化</strong>: AI持续学习，性能不断提升</li>
+        <div class="summary fade-in-section">
+            <h2>🎯 总结</h2>
+            <p>通过以上案例可以看到，Teamo Agent 在不同行业都能带来显著的效率提升和质量改善。无论是投资决策、学术研究还是市场分析，AI多智能体协作都能帮助企业：</p>
+            <ul style="margin-top: 1.5rem; margin-bottom: 0;">
+                <li>✨ <strong>大幅缩短时间</strong>：将数周数月的工作缩短至数天数小时</li>
+                <li>💎 <strong>提升分析质量</strong>：多智能体验证确保准确性和可靠性</li>
+                <li>🚀 <strong>加速决策过程</strong>：快速获得洞察，抓住商业机会</li>
+                <li>💡 <strong>降低人力成本</strong>：释放团队精力，专注于核心业务</li>
             </ul>
-
-            <div style="text-align: center; margin-top: 2rem;">
-                <a href="/register" class="btn" style="font-size: 1.2rem; padding: 1rem 2rem;">立即体验 Teamo Agent</a>
-            </div>
+            <p style="margin-top: 2rem; margin-bottom: 0;">如果您想了解更多，或者希望看到您所在行业的案例，请联系我们。我们很乐意为您定制专属解决方案。</p>
         </div>
     </div>
 
     <footer>
         <div class="container">
-            <p>&copy; 2026 RendaBio. 以上案例基于真实客户数据，已获授权使用</p>
+            <p>&copy; 2026 RendaBio. Teamo Agent 是 RendaBio 平台的重要组成部分</p>
         </div>
     </footer>
 
     <button class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</button>
 
     <script>
+        // 创建粒子效果
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 40;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.width = Math.random() * 10 + 5 + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.animationDuration = Math.random() * 20 + 10 + 's';
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // 滚动动画
+        function handleScrollAnimation() {
+            const sections = document.querySelectorAll('.fade-in-section');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        }
+
         // 回到顶部按钮
         const backToTop = document.querySelector('.back-to-top');
 
@@ -591,6 +928,12 @@
             } else {
                 backToTop.classList.remove('show');
             }
+        });
+
+        // 初始化
+        document.addEventListener('DOMContentLoaded', () => {
+            createParticles();
+            handleScrollAnimation();
         });
     </script>
 </body>
