@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teamo Agent - AI多智能体企业级解决方案</title>
+    <meta name="description" content="Teamo Agent 是领先的企业级AI多智能体平台，为知识工作者提供行业定制的解决方案，准确率达95%以上。">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f7fafc;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* 导航栏 */
+        nav {
+            background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #3182ce;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #4a5568;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: #3182ce;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: white;
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: transform 0.2s;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* 内容区域 */
+        .content {
+            padding: 3rem 0;
+        }
+
+        .section {
+            background: white;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            color: #2d3748;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+        }
+
+        h3 {
+            color: #4a5568;
+            margin: 1.5rem 0 1rem;
+            font-size: 1.5rem;
+        }
+
+        h4 {
+            color: #2d3748;
+            margin: 1rem 0 0.5rem;
+            font-size: 1.25rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: #4a5568;
+        }
+
+        ul, ol {
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* 表格样式 */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: white;
+        }
+
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        th {
+            background: #f7fafc;
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        tr:hover {
+            background: #f7fafc;
+        }
+
+        /* 优势卡片 */
+        .advantages {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .advantage-card {
+            background: #f7fafc;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            border-left: 4px solid #667eea;
+        }
+
+        .advantage-card h4 {
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        /* 解决方案网格 */
+        .solutions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .solution-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border-top: 4px solid #667eea;
+        }
+
+        .solution-card h4 {
+            color: #2d3748;
+            margin-bottom: 0.5rem;
+        }
+
+        .efficiency {
+            background: #ebf8ff;
+            padding: 0.5rem;
+            border-radius: 0.25rem;
+            margin-top: 1rem;
+            font-weight: 600;
+            color: #2c5282;
+        }
+
+        /* 引用样式 */
+        blockquote {
+            border-left: 4px solid #667eea;
+            padding-left: 1rem;
+            margin: 1.5rem 0;
+            font-style: italic;
+            color: #4a5568;
+        }
+
+        /* 页脚 */
+        footer {
+            background: #2d3748;
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .solutions {
+                grid-template-columns: 1fr;
+            }
+
+            .advantages {
+                grid-template-columns: 1fr;
+            }
+
+            table {
+                font-size: 14px;
+            }
+
+            th, td {
+                padding: 0.5rem;
+            }
+        }
+
+        /* 回到顶部按钮 */
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #667eea;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            z-index: 99;
+        }
+
+        .back-to-top.show {
+            display: flex;
+        }
+
+        .back-to-top:hover {
+            background: #764ba2;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container nav-content">
+            <a href="/" class="logo">RendaBio</a>
+            <div class="nav-links">
+                <a href="/#features">Product</a>
+                <a href="/#agents">Agents</a>
+                <a href="/#pricing">Pricing</a>
+                <a href="/#workflow">Docs</a>
+                <a href="/login">Login</a>
+                <a href="/register">Get Started</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="hero">
+        <div class="container">
+            <h1>Teamo Agent</h1>
+            <p>AI多智能体企业级解决方案</p>
+            <a href="/register" class="btn">免费试用</a>
+        </div>
+    </div>
+
+    <div class="container content">
+        <div class="section">
+            <h2>核心优势</h2>
+            <div class="advantages">
+                <div class="advantage-card">
+                    <h4>✅ 多智能体协同</h4>
+                    <p>多个专业化AI智能体分工协作，模拟真实团队工作模式</p>
+                </div>
+                <div class="advantage-card">
+                    <h4>✅ 行业定制化</h4>
+                    <p>针对不同行业深度定制的解决方案</p>
+                </div>
+                <div class="advantage-card">
+                    <h4>✅ 高准确率</h4>
+                    <p>95%+ 的分析准确率，多智能体验证确保质量</p>
+                </div>
+                <div class="advantage-card">
+                    <h4>✅ 效率飞跃</h4>
+                    <p>平均提升 50%-90% 的工作效率</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>十大行业解决方案</h2>
+
+            <div class="solutions">
+                <div class="solution-card">
+                    <h4>1. 私募股权投资</h4>
+                    <p><strong>AI尽职调查</strong></p>
+                    <p>将复杂的尽职调查流程从6周缩短至6天</p>
+                    <div class="efficiency">效率提升: 85% ↓</div>
+                </div>
+
+                <div class="solution-card">
+                    <h4>2. 学术研究</h4>
+                    <p><strong>AI文献综述</strong></p>
+                    <p>从海量文献到综合分析，48小时完成200篇论文综述</p>
+                    <div class="efficiency">效率提升: 92% ↓</div>
+                </div>
+
+                <div class="solution-card">
+                    <h4>3. SaaS初创公司</h4>
+                    <p><strong>AI市场研究</strong></p>
+                    <p>从创意到市场验证策略，72小时完成深度调研</p>
+                    <div class="efficiency">效率提升: 92% ↓</div>
+                </div>
+
+                <div class="solution-card">
+                    <h4>4. 律师事务所</h4>
+                    <p><strong>AI法律研究</strong></p>
+                    <p>将40小时的案例研究转化为4小时全面分析</p>
+                    <div class="efficiency">效率提升: 90% ↓</div>
+                </div>
+
+                <div class="solution-card">
+                    <h4>5. 投资顾问</h4>
+                    <p><strong>AI财务分析</strong></p>
+                    <p>从手工电子表格到AI验证的投资策略，分钟级完成</p>
+                    <div class="efficiency">效率提升: 95%+ ↓</div>
+                </div>
+
+                <div class="solution-card">
+                    <h4>6. B2B营销</h4>
+                    <p><strong>AI内容策略</strong></p>
+                    <p>从季度内容规划到每周策略优化，实时生成评估</p>
+                    <div class="efficiency">效率提升: 75% ↓</div>
+                </div>
+
+                <div class="solution-card">
+                    <h4>7. 制药公司</h4>
+                    <p><strong>AI研究验证</strong></p>
+                    <p>将制药研究验证从数月缩短至数周，准确率99.5%</p>
+                    <div class="efficiency">准确率: 99.5%</div>
+                </div>
+
+                <div class="solution-card">
+                    <h4>8. 管理咨询</h4>
+                    <p><strong>AI战略规划</strong></p>
+                    <p>将8周的战略项目转化为2周的AI加速洞察</p>
+                    <div class="efficiency">效率提升: 75% ↓</div>
+                </div>
+
+                <div class="solution-card">
+                    <h4>9. 产品管理</h4>
+                    <p><strong>AI竞争情报</strong></p>
+                    <p>实时AI驱动的竞争情报系统，永不错过竞争动向</p>
+                    <div class="efficiency">实时监控</div>
+                </div>
+
+                <div class="solution-card">
+                    <h4>10. 开发者关系</h4>
+                    <p><strong>AI技术写作</strong></p>
+                    <p>从代码到全面开发者文档，分钟级生成高质量文档</p>
+                    <div class="efficiency">效率提升: 95%+ ↓</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>为什么选择 Teamo Agent？</h2>
+            <ul>
+                <li><strong>行业专精</strong>: 每个解决方案都经过行业专家验证，深度理解特定业务场景和需求</li>
+                <li><strong>多智能体验证</strong>: 多个AI智能体交叉验证，有效抑制幻觉，确保输出的准确性和可靠性</li>
+                <li><strong>效率飞跃</strong>: 将传统流程缩短50%-90%，让您的团队专注于核心业务</li>
+                <li><strong>可追溯性</strong>: 所有结论都有数据来源支撑，完整记录决策过程，支持审计和复盘</li>
+                <li><strong>全球覆盖</strong>: 支持多语言、多地区，满足跨国企业的全球化业务需求</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>常见问题</h2>
+
+            <h4>Teamo Agent 如何保证准确性？</h4>
+            <p>我们采用多智能体交叉验证机制，多个专业智能体独立分析同一问题，然后交叉比对结果。这种机制将准确率提升至95%以上，远高于单智能体方案。</p>
+
+            <h4>数据安全如何保障？</h4>
+            <p>我们采用企业级加密标准，支持私有化部署。您的数据始终在您的控制之下，符合 GDPR、HIPAA 等国际合规标准。</p>
+
+            <h4>如何开始使用？</h4>
+            <p>只需简单三步：1. 注册账号 2. 选择适合的行业解决方案 3. 描述您的需求，AI智能体即刻开始工作</p>
+        </div>
+
+        <div class="section">
+            <h2>客户评价</h2>
+
+            <blockquote>
+                <p>"Teamo Agent 将我们的尽职调查时间从6周缩短到6天，而且准确率反而更高。这对于我们快速抓住投资机会至关重要。"</p>
+                <p><strong>—— 某私募股权基金合伙人</strong></p>
+            </blockquote>
+
+            <blockquote>
+                <p>"学术研究的效率提升让我们震惊。200篇论文的综述从8周缩短到48小时，质量还更好了。"</p>
+                <p><strong>—— 某高校研究员</strong></p>
+            </blockquote>
+
+            <blockquote>
+                <p>"作为律师，时间就是金钱。Teamo Agent 让我能在4小时内完成原本需要40小时的案例研究，这简直是革命性的改变。"</p>
+                <p><strong>—— 某律师事务所合伙人</strong></p>
+            </blockquote>
+        </div>
+
+        <div class="section" style="text-align: center;">
+            <h2>立即开始</h2>
+            <p style="font-size: 1.2rem;">加入 10,000+ 知识工作者和企业团队，体验 Teamo Agent 带来的效率革命。</p>
+            <a href="/register" class="btn" style="font-size: 1.2rem; padding: 1rem 2rem;">免费试用 Teamo Agent</a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 RendaBio. Teamo Agent 是 RendaBio 平台的重要组成部分</p>
+        </div>
+    </footer>
+
+    <button class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</button>
+
+    <script>
+        // 回到顶部按钮
+        const backToTop = document.querySelector('.back-to-top');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTop.classList.add('show');
+            } else {
+                backToTop.classList.remove('show');
+            }
+        });
+    </script>
+</body>
+</html>

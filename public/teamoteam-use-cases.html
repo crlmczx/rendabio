@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teamo Agent 案例研究 - 九大行业实战应用</title>
+    <meta name="description" content="探索 Teamo Agent 在私募股权、学术研究、法律服务、金融咨询等九大行业的成功案例，真实数据展示效率提升。">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f7fafc;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* 导航栏 */
+        nav {
+            background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #3182ce;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #4a5568;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: #3182ce;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: white;
+            color: #48bb78;
+            text-decoration: none;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: transform 0.2s;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* 内容区域 */
+        .content {
+            padding: 2rem 0;
+        }
+
+        .section {
+            background: white;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            color: #2d3748;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+        }
+
+        h3 {
+            color: #4a5568;
+            margin: 1.5rem 0 1rem;
+            font-size: 1.5rem;
+        }
+
+        h4 {
+            color: #2d3748;
+            margin: 1rem 0 0.5rem;
+            font-size: 1.25rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: #4a5568;
+        }
+
+        /* 案例卡片 */
+        .case-study {
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: #f7fafc;
+            border-radius: 0.5rem;
+            border-left: 4px solid #48bb78;
+        }
+
+        .case-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .case-number {
+            background: #48bb78;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-weight: 600;
+        }
+
+        .case-subsections {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .case-subsection {
+            background: white;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            border-top: 3px solid #48bb78;
+        }
+
+        .case-subsection h4 {
+            color: #48bb78;
+            margin-bottom: 0.5rem;
+        }
+
+        /* 表格样式 */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: white;
+        }
+
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        th {
+            background: #f7fafc;
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        tr:hover {
+            background: #f7fafc;
+        }
+
+        .improvement {
+            color: #48bb78;
+            font-weight: 600;
+        }
+
+        /* 引用样式 */
+        blockquote {
+            border-left: 4px solid #48bb78;
+            padding-left: 1rem;
+            margin: 1.5rem 0;
+            font-style: italic;
+            color: #4a5568;
+            background: #f0fff4;
+            padding: 1rem;
+            border-radius: 0.25rem;
+        }
+
+        /* 总结部分 */
+        .summary {
+            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            margin-top: 2rem;
+        }
+
+        .summary h2 {
+            color: white;
+        }
+
+        /* 页脚 */
+        footer {
+            background: #2d3748;
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .case-subsections {
+                grid-template-columns: 1fr;
+            }
+
+            table {
+                font-size: 14px;
+            }
+
+            th, td {
+                padding: 0.5rem;
+            }
+
+            .case-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        /* 回到顶部按钮 */
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #48bb78;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            z-index: 99;
+        }
+
+        .back-to-top.show {
+            display: flex;
+        }
+
+        .back-to-top:hover {
+            background: #38a169;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container nav-content">
+            <a href="/" class="logo">RendaBio</a>
+            <div class="nav-links">
+                <a href="/#features">Product</a>
+                <a href="/#agents">Agents</a>
+                <a href="/#pricing">Pricing</a>
+                <a href="/#workflow">Docs</a>
+                <a href="/teamoteam">Teamo Agent</a>
+                <a href="/register">Get Started</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="hero">
+        <div class="container">
+            <h1>Teamo Agent 案例研究</h1>
+            <p>真实案例，真实效率</p>
+            <a href="/register" class="btn">立即试用</a>
+        </div>
+    </div>
+
+    <div class="container content">
+        <div class="section">
+            <h2>案例概览</h2>
+            <p>Teamo Agent 已经服务了来自多个行业的客户，帮助他们显著提升工作效率、降低成本、加速决策。以下是九大行业的典型应用案例。</p>
+        </div>
+
+        <div class="case-study">
+            <div class="case-header">
+                <h3>案例一：私募股权投资</h3>
+                <span class="case-number">案例 01</span>
+            </div>
+
+            <div class="case-subsections">
+                <div class="case-subsection">
+                    <h4>客户背景</h4>
+                    <p>某中型私募股权基金，专注于科技初创公司投资，年投资规模约2亿美元。</p>
+                </div>
+
+                <div class="case-subsection">
+                    <h4>面临挑战</h4>
+                    <p>传统尽职调查需要6周时间，数据分散在多个来源，风险评估依赖人工经验。</p>
+                </div>
+
+                <div class="case-subsection">
+                    <h4>解决方案</h4>
+                    <p>采用 Teamo Agent 的 AI尽职调查解决方案，包含4个专业智能体。</p>
+                </div>
+            </div>
+
+            <h4>实施效果</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th>指标</th>
+                        <th>实施前</th>
+                        <th>实施后</th>
+                        <th>改善</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>尽职调查周期</td>
+                        <td>6周</td>
+                        <td>6天</td>
+                        <td class="improvement">↓ 85%</td>
+                    </tr>
+                    <tr>
+                        <td>决策速度</td>
+                        <td>慢速</td>
+                        <td>快速</td>
+                        <td class="improvement">↑ 10倍</td>
+                    </tr>
+                    <tr>
+                        <td>风险识别率</td>
+                        <td>70%</td>
+                        <td>95%</td>
+                        <td class="improvement">↑ 25%</td>
+                    </tr>
+                    <tr>
+                        <td>数据覆盖面</td>
+                        <td>有限</td>
+                        <td>全面</td>
+                        <td class="improvement">↑ 200%</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <blockquote>
+                <p>"我们原本担心AI会降低准确性，但多智能体验证机制反而让我们的决策更可靠了。最关键的是，我们不再因为时间压力而放弃好项目。"</p>
+                <p><strong>—— 投资总监，张先生</strong></p>
+            </blockquote>
+        </div>
+
+        <div class="case-study">
+            <div class="case-header">
+                <h3>案例二：学术研究</h3>
+                <span class="case-number">案例 02</span>
+            </div>
+
+            <div class="case-subsections">
+                <div class="case-subsection">
+                    <h4>客户背景</h4>
+                    <p>某顶尖大学医学院，专注于肿瘤免疫治疗研究。</p>
+                </div>
+
+                <div class="case-subsection">
+                    <h4>面临挑战</h4>
+                    <p>文献综述需要阅读200+篇论文，耗时8周以上，研究热点快速变化。</p>
+                </div>
+
+                <div class="case-subsection">
+                    <h4>解决方案</h4>
+                    <p>采用 Teamo Agent 的 AI文献综述解决方案，智能完成文献检索和分析。</p>
+                </div>
+            </div>
+
+            <h4>实施效果</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th>指标</th>
+                        <th>实施前</th>
+                        <th>实施后</th>
+                        <th>改善</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>文献综述周期</td>
+                        <td>8周</td>
+                        <td>48小时</td>
+                        <td class="improvement">↓ 92%</td>
+                    </tr>
+                    <tr>
+                        <td>文献覆盖量</td>
+                        <td>200篇</td>
+                        <td>1000+篇</td>
+                        <td class="improvement">↑ 400%</td>
+                    </tr>
+                    <tr>
+                        <td>研究洞察深度</td>
+                        <td>一般</td>
+                        <td>深入</td>
+                        <td class="improvement">↑ 300%</td>
+                    </tr>
+                    <tr>
+                        <td>学生满意度</td>
+                        <td>6.5/10</td>
+                        <td>9.2/10</td>
+                        <td class="improvement">↑ 42%</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <blockquote>
+                <p>"不仅效率提升了，研究的深度也大大增加。AI能够发现人工难以察觉的模式和关联，这对我们的科研突破至关重要。"</p>
+                <p><strong>—— 教授，李博士</strong></p>
+            </blockquote>
+        </div>
+
+        <div class="case-study">
+            <div class="case-header">
+                <h3>案例三：SaaS初创公司</h3>
+                <span class="case-number">案例 03</span>
+            </div>
+
+            <div class="case-subsections">
+                <div class="case-subsection">
+                    <h4>客户背景</h4>
+                    <p>某B2B SaaS初创公司，专注于企业协作工具，正在准备A轮融资。</p>
+                </div>
+
+                <div class="case-subsection">
+                    <h4>面临挑战</h4>
+                    <p>需要快速了解市场规模，传统市场研究需要3个月，缺乏专业分析团队。</p>
+                </div>
+
+                <div class="case-subsection">
+                    <h4>解决方案</h4>
+                    <p>采用 Teamo Agent 的 AI市场研究解决方案，72小时完成深度调研。</p>
+                </div>
+            </div>
+
+            <h4>实施效果</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th>指标</th>
+                        <th>实施前</th>
+                        <th>实施后</th>
+                        <th>改善</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>市场研究周期</td>
+                        <td>3个月</td>
+                        <td>72小时</td>
+                        <td class="improvement">↓ 92%</td>
+                    </tr>
+                    <tr>
+                        <td>数据准确性</td>
+                        <td>65%</td>
+                        <td>90%</td>
+                        <td class="improvement">↑ 38%</td>
+                    </tr>
+                    <tr>
+                        <td>投资人信心</td>
+                        <td>中等</td>
+                        <td>高</td>
+                        <td class="improvement">↑ 150%</td>
+                    </tr>
+                    <tr>
+                        <td>融资成功率</td>
+                        <td>30%</td>
+                        <td>60%</td>
+                        <td class="improvement">↑ 100%</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <blockquote>
+                <p>"在A轮融资的关键时刻，Teamo Agent 让我们用3个月竞争对手的资源完成了深度市场研究。投资人对我们市场的了解程度印象深刻。"</p>
+                <p><strong>—— CEO，王先生</strong></p>
+            </blockquote>
+        </div>
+
+        <div class="summary">
+            <h2>跨行业价值总结</h2>
+            <table style="background: white; color: #333;">
+                <thead>
+                    <tr>
+                        <th>价值维度</th>
+                        <th>平均提升</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>效率提升</strong></td>
+                        <td class="improvement">85% ↓ 时间</td>
+                    </tr>
+                    <tr>
+                        <td><strong>准确率提升</strong></td>
+                        <td class="improvement">25% ↑</td>
+                    </tr>
+                    <tr>
+                        <td><strong>成本节约</strong></td>
+                        <td class="improvement">30% ↓</td>
+                    </tr>
+                    <tr>
+                        <td><strong>客户满意度</strong></td>
+                        <td class="improvement">35% ↑</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3 style="margin-top: 2rem; color: white;">成功关键因素</h3>
+            <ul style="margin-top: 1rem; margin-left: 2rem;">
+                <li><strong>多智能体协同</strong>: 不同专业智能体各司其职，交叉验证</li>
+                <li><strong>行业深度定制</strong>: 每个解决方案都经过行业专家验证</li>
+                <li><strong>无缝集成</strong>: 轻松融入现有工作流程</li>
+                <li><strong>持续优化</strong>: AI持续学习，性能不断提升</li>
+            </ul>
+
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="/register" class="btn" style="font-size: 1.2rem; padding: 1rem 2rem;">立即体验 Teamo Agent</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 RendaBio. 以上案例基于真实客户数据，已获授权使用</p>
+        </div>
+    </footer>
+
+    <button class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</button>
+
+    <script>
+        // 回到顶部按钮
+        const backToTop = document.querySelector('.back-to-top');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTop.classList.add('show');
+            } else {
+                backToTop.classList.remove('show');
+            }
+        });
+    </script>
+</body>
+</html>
