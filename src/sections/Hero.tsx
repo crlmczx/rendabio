@@ -68,8 +68,10 @@ export function Hero() {
           variants={itemVariants}
           className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white mb-6 leading-tight"
         >
-          {t('hero.title')}{' '}
-          <span className="text-gradient">{t('hero.titleHighlight')}</span>
+          <span className="inline-block whitespace-nowrap">
+            {t('hero.title')}{' '}
+            <span className="text-gradient">{t('hero.titleHighlight')}</span>
+          </span>
         </motion.h1>
 
         {/* Subtitle */}
