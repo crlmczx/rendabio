@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Menu, X, User } from 'lucide-react';
+import { Menu, X, User, Phone } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { LanguageSwitcher } from './LanguageSwitcher';
 import { useTranslation } from 'react-i18next';
@@ -18,8 +18,9 @@ export function Navbar() {
     { name: t('nav.agents'), href: '#agents' },
     { name: t('nav.pricing'), href: '#pricing' },
     { name: t('nav.docs'), href: '#workflow' },
-    { name: 'Teamo Agent', href: '/teamoteam.html', external: true },
-    { name: '案例研究', href: '/teamoteam-use-cases.html', external: true },
+    { name: t('nav.teamoAgent'), href: '/teamoteam.html', external: true },
+    { name: t('nav.caseStudies'), href: '/teamoteam-use-cases.html', external: true },
+    { name: t('nav.virtualNumber'), href: '/virtual-number', external: false, icon: true },
   ];
 
   useEffect(() => {
@@ -69,6 +70,21 @@ export function Navbar() {
                   >
                     {link.name}
                   </motion.a>
+                );
+              }
+              if (link.icon) {
+                return (
+                  <Link key={link.name} to={link.href}>
+                    <motion.div
+                      className="flex items-center gap-1.5 text-base text-gray-300 hover:text-white transition-colors"
+                      whileHover={{ y: -1 }}
+                    >
+                      <div className="w-6 h-6 rounded-md bg-gradient-to-br from-primary to-purple-600 flex items-center justify-center">
+                        <Phone className="w-3.5 h-3.5 text-white" />
+                      </div>
+                      {link.name}
+                    </motion.div>
+                  </Link>
                 );
               }
               return (
@@ -145,14 +161,37 @@ export function Navbar() {
           >
             <div className="px-4 py-4 space-y-4">
               {navLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  className="block text-gray-300 hover:text-white py-2 text-lg"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {link.name}
-                </a>
+                link.external ? (
+                  <a
+                    key={link.name}
+                    href={link.href}
+                    className="block text-gray-300 hover:text-white py-2 text-lg"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {link.name}
+                  </a>
+                ) : link.icon ? (
+                  <Link
+                    key={link.name}
+                    to={link.href}
+                    className="flex items-center gap-2 text-gray-300 hover:text-white py-2 text-lg"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    <div className="w-6 h-6 rounded-md bg-gradient-to-br from-primary to-purple-600 flex items-center justify-center">
+                      <Phone className="w-3.5 h-3.5 text-white" />
+                    </div>
+                    {link.name}
+                  </Link>
+                ) : (
+                  <a
+                    key={link.name}
+                    href={link.href}
+                    className="block text-gray-300 hover:text-white py-2 text-lg"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {link.name}
+                  </a>
+                )
               ))}
               
               {/* Mobile Language Switcher */}

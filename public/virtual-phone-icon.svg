@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6d48c3;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#4a2d8a;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <!-- Rounded square background -->
+  <rect x="0" y="0" width="120" height="120" rx="24" ry="24" fill="url(#bgGrad)" />
+  <!-- Phone handset -->
+  <g transform="translate(32, 28)" fill="none" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Phone body -->
+    <path d="M28 15C28 6.716 21.284 0 13 0H12C3.716 0 -3 6.716 -3 15v26c0 8.284 6.716 15 15 15h1c8.284 0 15-6.716 15-15V15Z" />
+    <!-- Speaker grills -->
+    <line x1="4" y1="10" x2="10" y2="10" />
+    <line x1="4" y1="15" x2="10" y2="15" />
+    <!-- Home button -->
+    <circle cx="12" cy="48" r="3" />
+  </g>
+  <!-- Sound waves on the right side -->
+  <g transform="translate(72, 38)" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+    <path d="M0 10 Q6 5 0 0" opacity="0.7" />
+    <path d="M4 14 Q12 7 4 0" opacity="0.5" />
+    <path d="M8 18 Q18 9 8 0" opacity="0.3" />
+  </g>
+  <!-- REC label -->
+  <g transform="translate(40, 88)">
+    <rect x="0" y="0" width="36" height="16" rx="3" fill="white" />
+    <text x="18" y="12" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="#6d48c3" text-anchor="middle">REC</text>
+  </g>
+  <!-- Recording dot -->
+  <circle cx="52" cy="96" r="3" fill="#ff3b30" />
+</svg>

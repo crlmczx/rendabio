@@ -6,6 +6,7 @@
     <title>Teamo Agent 案例研究 - 九大行业实战应用</title>
     <meta name="description" content="探索 Teamo Agent 在私募股权、学术研究、法律服务、金融咨询等九大行业的成功案例，真实数据展示效率提升。">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="/i18n-html.js"></script>
     <style>
         * {
             margin: 0;
@@ -623,6 +624,45 @@
                 font-size: 1rem;
             }
         }
+
+        /* Language Switcher Styles */
+        .lang-switcher {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-left: 1rem;
+            padding: 0.3rem 0.8rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .lang-switcher:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .lang-switcher a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .lang-switcher a:hover {
+            opacity: 0.8;
+        }
+
+        .lang-switcher a.active {
+            font-weight: 700;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        .lang-switcher span {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.8rem;
+        }
     </style>
 </head>
 <body>
@@ -636,27 +676,32 @@
         <div class="container nav-content">
             <a href="/" class="logo">RendaBio</a>
             <div class="nav-links">
-                <a href="/#features">Product</a>
-                <a href="/#agents">Agents</a>
-                <a href="/#pricing">Pricing</a>
-                <a href="/#workflow">Docs</a>
-                <a href="/teamoteam.html">Teamo Agent</a>
-                <a href="/register">Get Started</a>
+                <a href="/#features" data-i18n="nav.home">首页</a>
+                <a href="/#agents" data-i18n="nav.features">功能</a>
+                <a href="/#pricing" data-i18n="nav.pricing">定价</a>
+                <a href="/#workflow" data-i18n="nav.docs">文档</a>
+                <a href="/teamoteam.html" data-i18n="nav.teamoAgent">Teamo Agent</a>
+                <a href="/register" data-i18n="nav.getStarted">开始使用</a>
+                <div class="lang-switcher">
+                    <a href="#" onclick="switchLanguage('zh'); return false;" data-i18n="language.zh">中文</a>
+                    <span>|</span>
+                    <a href="#" onclick="switchLanguage('en'); return false;" data-i18n="language.en">English</a>
+                </div>
             </div>
         </div>
     </nav>
 
     <div class="hero">
         <div class="container">
-            <h1>Teamo Agent 案例研究</h1>
-            <p>真实案例，真实效率</p>
-            <a href="/register" class="btn">立即试用</a>
+            <h1 data-i18n="useCases.hero">Teamo Agent 案例研究</h1>
+            <p data-i18n="useCases.subtitle">真实案例，真实效率</p>
+            <a href="/register" class="btn" data-i18n="cta.button">立即试用</a>
         </div>
     </div>
 
     <div class="container content">
         <div class="section fade-in-section">
-            <h2>案例概览</h2>
+            <h2 data-i18n="cases.overview">案例概览</h2>
             <p>Teamo Agent 已经服务了来自多个行业的客户，帮助他们显著提升工作效率、降低成本、加速决策。以下是九大行业的典型应用案例。</p>
         </div>
 

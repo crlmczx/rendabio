@@ -19,6 +19,8 @@ import { Files } from '@/pages/Files';
 import { Settings } from '@/pages/Settings';
 import { About } from '@/pages/About';
 import { SearchPage } from '@/pages/Search';
+import { VirtualNumber } from '@/pages/VirtualNumber';
+import { VirtualNumberPanel } from '@/components/VirtualNumberPanel';
 
 // 首页组件
 function Home() {
@@ -36,6 +38,7 @@ function Home() {
         <CTA />
       </main>
       <Footer />
+      <VirtualNumberPanel />
     </>
   );
 }
@@ -101,6 +104,7 @@ function AppRoutes() {
       />
       <Route path="/about" element={<About />} />
       <Route path="/search" element={<SearchPage />} />
+      <Route path="/virtual-number" element={<VirtualNumber />} />
       
       {/* Protected Routes */}
       <Route 

@@ -6,6 +6,7 @@
     <title>Teamo Agent - AI多智能体企业级解决方案</title>
     <meta name="description" content="Teamo Agent 是领先的企业级AI多智能体平台，为知识工作者提供行业定制的解决方案，准确率达95%以上。">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="/i18n-html.js"></script>
     <style>
         * {
             margin: 0;
@@ -596,6 +597,45 @@
                 font-size: 1rem;
             }
         }
+
+        /* Language Switcher Styles */
+        .lang-switcher {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-left: 1rem;
+            padding: 0.3rem 0.8rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .lang-switcher:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .lang-switcher a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .lang-switcher a:hover {
+            opacity: 0.8;
+        }
+
+        .lang-switcher a.active {
+            font-weight: 700;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        .lang-switcher span {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.8rem;
+        }
     </style>
 </head>
 <body>
@@ -609,153 +649,158 @@
         <div class="container nav-content">
             <a href="/" class="logo">RendaBio</a>
             <div class="nav-links">
-                <a href="/#features">Product</a>
-                <a href="/#agents">Agents</a>
-                <a href="/#pricing">Pricing</a>
-                <a href="/#workflow">Docs</a>
-                <a href="/login">Login</a>
-                <a href="/register">Get Started</a>
+                <a href="/#features" data-i18n="nav.home">首页</a>
+                <a href="/#agents" data-i18n="nav.features">功能</a>
+                <a href="/#pricing" data-i18n="nav.pricing">定价</a>
+                <a href="/#workflow" data-i18n="nav.docs">文档</a>
+                <a href="/login" data-i18n="nav.login">登录</a>
+                <a href="/register" data-i18n="nav.getStarted">开始使用</a>
+                <div class="lang-switcher">
+                    <a href="#" onclick="switchLanguage('zh'); return false;" data-i18n="language.zh">中文</a>
+                    <span>|</span>
+                    <a href="#" onclick="switchLanguage('en'); return false;" data-i18n="language.en">English</a>
+                </div>
             </div>
         </div>
     </nav>
 
     <div class="hero">
         <div class="container hero-content">
-            <h1>Teamo Agent</h1>
-            <p>AI多智能体企业级解决方案</p>
-            <a href="/register" class="btn">免费试用</a>
+            <h1 data-i18n="hero.title">Teamo Agent</h1>
+            <p data-i18n="hero.subtitle">AI多智能体企业级解决方案</p>
+            <a href="/register" class="btn" data-i18n="cta.button">免费试用</a>
         </div>
     </div>
 
     <div class="container content">
         <div class="section fade-in-section">
-            <h2>核心优势</h2>
+            <h2 data-i18n="advantages.title">核心优势</h2>
             <div class="advantages">
                 <div class="advantage-card">
-                    <h4>✨ 多智能体协同</h4>
-                    <p>多个专业化AI智能体分工协作，模拟真实团队工作模式，让复杂任务变得简单高效</p>
+                    <h4 data-i18n="advantages.1.title">✨ 多智能体协同</h4>
+                    <p data-i18n="advantages.1.desc">多个专业化AI智能体分工协作，模拟真实团队工作模式，让复杂任务变得简单高效</p>
                 </div>
                 <div class="advantage-card">
-                    <h4>🎯 行业定制化</h4>
-                    <p>针对不同行业深度定制的解决方案，精准匹配您的业务需求</p>
+                    <h4 data-i18n="advantages.2.title">🎯 行业定制化</h4>
+                    <p data-i18n="advantages.2.desc">针对不同行业深度定制的解决方案，精准匹配您的业务需求</p>
                 </div>
                 <div class="advantage-card">
-                    <h4>💎 高准确率</h4>
-                    <p>95%+ 的分析准确率，多智能体验证确保输出质量</p>
+                    <h4 data-i18n="advantages.3.title">💎 高准确率</h4>
+                    <p data-i18n="advantages.3.desc">95%+ 的分析准确率，多智能体验证确保输出质量</p>
                 </div>
                 <div class="advantage-card">
-                    <h4>⚡ 效率飞跃</h4>
-                    <p>平均提升 50%-90% 的工作效率，让您的团队专注于核心业务</p>
+                    <h4 data-i18n="advantages.4.title">⚡ 效率飞跃</h4>
+                    <p data-i18n="advantages.4.desc">平均提升 50%-90% 的工作效率，让您的团队专注于核心业务</p>
                 </div>
             </div>
         </div>
 
         <div class="section fade-in-section">
-            <h2>十大行业解决方案</h2>
+            <h2 data-i18n="solutions.title">十大行业解决方案</h2>
 
             <div class="solutions">
                 <div class="solution-card">
-                    <h4>1. 💼 私募股权投资</h4>
-                    <p><strong>AI尽职调查</strong></p>
-                    <p>将复杂的尽职调查流程从6周缩短至6天</p>
-                    <div class="efficiency">效率提升: 85% ↓</div>
+                    <h4 data-i18n="solutions.1.title">1. 💼 私募股权投资</h4>
+                    <p><strong data-i18n="solutions.1.subtitle">AI尽职调查</strong></p>
+                    <p data-i18n="solutions.1.desc">将复杂的尽职调查流程从6周缩短至6天</p>
+                    <div class="efficiency" data-i18n="solutions.1.efficiency">效率提升: 85% ↓</div>
                 </div>
 
                 <div class="solution-card">
-                    <h4>2. 📚 学术研究</h4>
-                    <p><strong>AI文献综述</strong></p>
-                    <p>从海量文献到综合分析，48小时完成200篇论文综述</p>
-                    <div class="efficiency">效率提升: 92% ↓</div>
+                    <h4 data-i18n="solutions.2.title">2. 📚 学术研究</h4>
+                    <p><strong data-i18n="solutions.2.subtitle">AI文献综述</strong></p>
+                    <p data-i18n="solutions.2.desc">从海量文献到综合分析，48小时完成200篇论文综述</p>
+                    <div class="efficiency" data-i18n="solutions.2.efficiency">效率提升: 92% ↓</div>
                 </div>
 
                 <div class="solution-card">
-                    <h4>3. 🚀 SaaS初创公司</h4>
-                    <p><strong>AI市场研究</strong></p>
-                    <p>从创意到市场验证策略，72小时完成深度调研</p>
-                    <div class="efficiency">效率提升: 92% ↓</div>
+                    <h4 data-i18n="solutions.3.title">3. 🚀 SaaS初创公司</h4>
+                    <p><strong data-i18n="solutions.3.subtitle">AI市场研究</strong></p>
+                    <p data-i18n="solutions.3.desc">从创意到市场验证策略，72小时完成深度调研</p>
+                    <div class="efficiency" data-i18n="solutions.3.efficiency">效率提升: 92% ↓</div>
                 </div>
 
                 <div class="solution-card">
-                    <h4>4. ⚖️ 律师事务所</h4>
-                    <p><strong>AI法律研究</strong></p>
-                    <p>将40小时的案例研究转化为4小时全面分析</p>
-                    <div class="efficiency">效率提升: 90% ↓</div>
+                    <h4 data-i18n="solutions.4.title">4. ⚖️ 律师事务所</h4>
+                    <p><strong data-i18n="solutions.4.subtitle">AI法律研究</strong></p>
+                    <p data-i18n="solutions.4.desc">将40小时的案例研究转化为4小时全面分析</p>
+                    <div class="efficiency" data-i18n="solutions.4.efficiency">效率提升: 90% ↓</div>
                 </div>
 
                 <div class="solution-card">
-                    <h4>5. 📈 投资顾问</h4>
-                    <p><strong>AI财务分析</strong></p>
-                    <p>从手工电子表格到AI验证的投资策略，分钟级完成</p>
-                    <div class="efficiency">效率提升: 95%+ ↓</div>
+                    <h4 data-i18n="solutions.5.title">5. 📈 投资顾问</h4>
+                    <p><strong data-i18n="solutions.5.subtitle">AI财务分析</strong></p>
+                    <p data-i18n="solutions.5.desc">从手工电子表格到AI验证的投资策略，分钟级完成</p>
+                    <div class="efficiency" data-i18n="solutions.5.efficiency">效率提升: 95%+ ↓</div>
                 </div>
 
                 <div class="solution-card">
-                    <h4>6. 📢 B2B营销</h4>
-                    <p><strong>AI内容策略</strong></p>
-                    <p>从季度内容规划到每周策略优化，实时生成评估</p>
-                    <div class="efficiency">效率提升: 75% ↓</div>
+                    <h4 data-i18n="solutions.6.title">6. 📢 B2B营销</h4>
+                    <p><strong data-i18n="solutions.6.subtitle">AI内容策略</strong></p>
+                    <p data-i18n="solutions.6.desc">从季度内容规划到每周策略优化，实时生成评估</p>
+                    <div class="efficiency" data-i18n="solutions.6.efficiency">效率提升: 75% ↓</div>
                 </div>
 
                 <div class="solution-card">
-                    <h4>7. 💊 制药公司</h4>
-                    <p><strong>AI研究验证</strong></p>
-                    <p>将制药研究验证从数月缩短至数周，准确率99.5%</p>
-                    <div class="efficiency">准确率: 99.5%</div>
+                    <h4 data-i18n="solutions.7.title">7. 💊 制药公司</h4>
+                    <p><strong data-i18n="solutions.7.subtitle">AI研究验证</strong></p>
+                    <p data-i18n="solutions.7.desc">将制药研究验证从数月缩短至数周，准确率99.5%</p>
+                    <div class="efficiency" data-i18n="solutions.7.accuracy">准确率: 99.5%</div>
                 </div>
 
                 <div class="solution-card">
-                    <h4>8. 🎯 管理咨询</h4>
-                    <p><strong>AI战略规划</strong></p>
-                    <p>将8周的战略项目转化为2周的AI加速洞察</p>
-                    <div class="efficiency">效率提升: 75% ↓</div>
+                    <h4 data-i18n="solutions.8.title">8. 🎯 管理咨询</h4>
+                    <p><strong data-i18n="solutions.8.subtitle">AI战略规划</strong></p>
+                    <p data-i18n="solutions.8.desc">将8周的战略项目转化为2周的AI加速洞察</p>
+                    <div class="efficiency" data-i18n="solutions.8.efficiency">效率提升: 75% ↓</div>
                 </div>
 
                 <div class="solution-card">
-                    <h4>9. 📱 产品管理</h4>
-                    <p><strong>AI竞争情报</strong></p>
-                    <p>实时AI驱动的竞争情报系统，永不错过竞争动向</p>
-                    <div class="efficiency">实时监控</div>
+                    <h4 data-i18n="solutions.9.title">9. 📱 产品管理</h4>
+                    <p><strong data-i18n="solutions.9.subtitle">AI竞争情报</strong></p>
+                    <p data-i18n="solutions.9.desc">实时AI驱动的竞争情报系统，永不错过竞争动向</p>
+                    <div class="efficiency" data-i18n="solutions.9.efficiency">实时监控</div>
                 </div>
 
                 <div class="solution-card">
-                    <h4>10. 💻 开发者关系</h4>
-                    <p><strong>AI技术写作</strong></p>
-                    <p>从代码到全面开发者文档，分钟级生成高质量文档</p>
-                    <div class="efficiency">效率提升: 95%+ ↓</div>
+                    <h4 data-i18n="solutions.10.title">10. 💻 开发者关系</h4>
+                    <p><strong data-i18n="solutions.10.subtitle">AI技术写作</strong></p>
+                    <p data-i18n="solutions.10.desc">从代码到全面开发者文档，分钟级生成高质量文档</p>
+                    <div class="efficiency" data-i18n="solutions.10.efficiency">效率提升: 95%+ ↓</div>
                 </div>
             </div>
         </div>
 
         <div class="section fade-in-section">
-            <h2>为什么选择 Teamo Agent？</h2>
+            <h2 data-i18n="why.title">为什么选择 Teamo Agent？</h2>
             <ul>
-                <li><strong>🔬 行业专精</strong>: 每个解决方案都经过行业专家验证，深度理解特定业务场景和需求</li>
-                <li><strong>🤝 多智能体验证</strong>: 多个AI智能体交叉验证，有效抑制幻觉，确保输出的准确性和可靠性</li>
-                <li><strong>🚀 效率飞跃</strong>: 将传统流程缩短50%-90%，让您的团队专注于核心业务</li>
-                <li><strong>📊 可追溯性</strong>: 所有结论都有数据来源支撑，完整记录决策过程，支持审计和复盘</li>
-                <li><strong>🌍 全球覆盖</strong>: 支持多语言、多地区，满足跨国企业的全球化业务需求</li>
+                <li data-i18n="why.1"><strong data-i18n="why.1strong">🔬 行业专精</strong>: 每个解决方案都经过行业专家验证，深度理解特定业务场景和需求</li>
+                <li data-i18n="why.2"><strong data-i18n="why.2strong">🤝 多智能体验证</strong>: 多个AI智能体交叉验证，有效抑制幻觉，确保输出的准确性和可靠性</li>
+                <li data-i18n="why.3"><strong data-i18n="why.3strong">🚀 效率飞跃</strong>: 将传统流程缩短50%-90%，让您的团队专注于核心业务</li>
+                <li data-i18n="why.4"><strong data-i18n="why.4strong">📊 可追溯性</strong>: 所有结论都有数据来源支撑，完整记录决策过程，支持审计和复盘</li>
+                <li data-i18n="why.5"><strong data-i18n="why.5strong">🌍 全球覆盖</strong>: 支持多语言、多地区，满足跨国企业的全球化业务需求</li>
             </ul>
         </div>
 
         <div class="section fade-in-section">
-            <h2>常见问题</h2>
+            <h2 data-i18n="faq.title">常见问题</h2>
 
-            <h4>❓ Teamo Agent 如何保证准确性？</h4>
-            <p>我们采用多智能体交叉验证机制，多个专业智能体独立分析同一问题，然后交叉比对结果。这种机制将准确率提升至95%以上，远高于单智能体方案。</p>
+            <h4 data-i18n="faq.1.question">❓ Teamo Agent 如何保证准确性？</h4>
+            <p data-i18n="faq.1.answer">我们采用多智能体交叉验证机制，多个专业智能体独立分析同一问题，然后交叉比对结果。这种机制将准确率提升至95%以上，远高于单智能体方案。</p>
 
-            <h4>❓ 数据安全如何保障？</h4>
-            <p>我们采用企业级加密标准，支持私有化部署。您的数据始终在您的控制之下，符合 GDPR、HIPAA 等国际合规标准。</p>
+            <h4 data-i18n="faq.2.question">❓ 数据安全如何保障？</h4>
+            <p data-i18n="faq.2.answer">我们采用企业级加密标准，支持私有化部署。您的数据始终在您的控制之下，符合 GDPR、HIPAA 等国际合规标准。</p>
 
-            <h4>❓ 如何开始使用？</h4>
-            <p>只需简单三步：1. 注册账号 2. 选择适合的行业解决方案 3. 描述您的需求，AI智能体即刻开始工作</p>
+            <h4 data-i18n="faq.3.question">❓ 如何开始使用？</h4>
+            <p data-i18n="faq.3.answer">只需简单三步：1. 注册账号 2. 选择适合的行业解决方案 3. 描述您的需求，AI智能体即刻开始工作</p>
         </div>
 
         <div class="section fade-in-section">
-            <h2>客户评价</h2>
+            <h2 data-i18n="testimonial.title">客户评价</h2>
 
             <blockquote>
-                <p>"Teamo Agent 将我们的尽职调查时间从6周缩短到6天，而且准确率反而更高。这对于我们快速抓住投资机会至关重要。"</p>
-                <p><strong>—— 某私募股权基金合伙人</strong></p>
+                <p data-i18n="testimonial.1">"Teamo Agent 将我们的尽职调查时间从6周缩短到6天，而且准确率反而更高。这对于我们快速抓住投资机会至关重要。"</p>
+                <p><strong data-i18n="testimonial.1author">—— 某私募股权基金合伙人</strong></p>
             </blockquote>
 
             <blockquote>
