@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Menu, X, User, Phone } from 'lucide-react';
+import { Menu, X, User, Phone, Bot } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { LanguageSwitcher } from './LanguageSwitcher';
 import { useTranslation } from 'react-i18next';
@@ -20,7 +20,8 @@ export function Navbar() {
     { name: t('nav.docs'), href: '#workflow' },
     { name: t('nav.teamoAgent'), href: '/teamoteam.html', external: true },
     { name: t('nav.caseStudies'), href: '/teamoteam-use-cases.html', external: true },
-    { name: t('nav.virtualNumber'), href: '/virtual-number', external: false, icon: true },
+    { name: t('nav.aiAgent'), href: '/agent', external: false, icon: 'bot' },
+    { name: t('nav.virtualNumber'), href: '/virtual-number', external: false, icon: 'phone' },
   ];
 
   useEffect(() => {
@@ -72,15 +73,23 @@ export function Navbar() {
                   </motion.a>
                 );
               }
-              if (link.icon) {
+              if (typeof link.icon === 'string') {
                 return (
                   <Link key={link.name} to={link.href}>
                     <motion.div
                       className="flex items-center gap-1.5 text-base text-gray-300 hover:text-white transition-colors"
                       whileHover={{ y: -1 }}
                     >
-                      <div className="w-6 h-6 rounded-md bg-gradient-to-br from-primary to-purple-600 flex items-center justify-center">
-                        <Phone className="w-3.5 h-3.5 text-white" />
+                      <div className={`w-6 h-6 rounded-md flex items-center justify-center ${
+                        link.icon === 'bot' 
+                          ? 'bg-gradient-to-br from-purple-500 to-indigo-600' 
+                          : 'bg-gradient-to-br from-primary to-purple-600'
+                      }`}>
+                        {link.icon === 'bot' ? (
+                          <Bot className="w-3.5 h-3.5 text-white" />
+                        ) : (
+                          <Phone className="w-3.5 h-3.5 text-white" />
+                        )}
                       </div>
                       {link.name}
                     </motion.div>
@@ -170,15 +179,23 @@ export function Navbar() {
                   >
                     {link.name}
                   </a>
-                ) : link.icon ? (
+                ) : typeof link.icon === 'string' ? (
                   <Link
                     key={link.name}
                     to={link.href}
                     className="flex items-center gap-2 text-gray-300 hover:text-white py-2 text-lg"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
-                    <div className="w-6 h-6 rounded-md bg-gradient-to-br from-primary to-purple-600 flex items-center justify-center">
-                      <Phone className="w-3.5 h-3.5 text-white" />
+                    <div className={`w-6 h-6 rounded-md flex items-center justify-center ${
+                      link.icon === 'bot' 
+                        ? 'bg-gradient-to-br from-purple-500 to-indigo-600' 
+                        : 'bg-gradient-to-br from-primary to-purple-600'
+                    }`}>
+                      {link.icon === 'bot' ? (
+                        <Bot className="w-3.5 h-3.5 text-white" />
+                      ) : (
+                        <Phone className="w-3.5 h-3.5 text-white" />
+                      )}
                     </div>
                     {link.name}
                   </Link>

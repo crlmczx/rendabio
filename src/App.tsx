@@ -21,7 +21,7 @@ import { About } from '@/pages/About';
 import { SearchPage } from '@/pages/Search';
 import { VirtualNumber } from '@/pages/VirtualNumber';
 import { VirtualNumberPanel } from '@/components/VirtualNumberPanel';
-import { KimiAgentBubble } from '@/components/KimiAgentBubble';
+import { HermesAgentPage } from '@/pages/HermesAgentPage';
 
 // 首页组件
 function Home() {
@@ -107,6 +107,7 @@ function AppRoutes() {
         <Route path="/about" element={<About />} />
         <Route path="/search" element={<SearchPage />} />
         <Route path="/virtual-number" element={<VirtualNumber />} />
+        <Route path="/agent" element={<HermesAgentPage />} />
         
         {/* Protected Routes */}
         <Route 
@@ -161,7 +162,6 @@ function AppRoutes() {
         {/* Fallback */}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
-      <KimiAgentBubble />
     </>
   );
 }
