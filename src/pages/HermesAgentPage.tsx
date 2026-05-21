@@ -1,10 +1,36 @@
-import { useState } from 'react';
+import { useState, useRef, useCallback, useEffect } from 'react';
 import { ExternalLink, Menu, Bot, Radio, Music, Wrench } from 'lucide-react';
 
 const KIMI_AGENT_URL = 'https://vquldoqdcjfe4.ok.kimi.link';
 
 export function HermesAgentPage() {
   const [activeTab, setActiveTab] = useState<'full' | 'tools'>('full');
+  const [activeTool, setActiveTool] = useState('热点抓取');
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+
+  // 点击外部工具按钮 → 尝试通过 postMessage 通知 iframe 内部
+  const handleToolClick = useCallback((tool: string) => {
+    setActiveTool(tool);
+
+    // 尝试 postMessage 到 iframe
+    try {
+      iframeRef.current?.contentWindow?.postMessage(
+        { type: 'SWITCH_TAB', tool: tool.toLowerCase() },
+        '*'
+      );
+    } catch {}
+  }, []);
+
+  // 监听 iframe 内部发来的消息，同步活动标签状态
+  useEffect(() => {
+    const handler = (e: MessageEvent) => {
+      if (e.data?.type === 'TAB_CHANGED' && typeof e.data?.tool === 'string') {
+        setActiveTool(e.data.tool);
+      }
+    };
+    window.addEventListener('message', handler);
+    return () => window.removeEventListener('message', handler);
+  }, []);
 
   return (
     <div className="min-h-screen bg-black flex flex-col">
@@ -71,32 +97,27 @@ export function HermesAgentPage() {
       <main className="flex-1 flex flex-col">
         {activeTab === 'full' ? (
           <div className="flex-1 flex flex-col">
-            {/* Hermes AI Pro 中的三个工具图标 - 居中 */}
+            {/* Hermes AI Pro 中的三个工具图标 - 居中，可点击切换 */}
             <div className="bg-surface/20 border-b border-white/5">
               <div className="max-w-3xl mx-auto px-4 py-4">
-                <div className="flex items-center justify-center gap-6">
-                  {[
-                    { icon: Radio, label: '热点抓取', active: true },
-                    { icon: Music, label: '音色工坊', active: false },
-                    { icon: Wrench, label: '创作工具', active: false },
-                  ].map((tool, idx) => (
-                    <>
-                      <button
-                        key={tool.label}
-                        className={`flex items-center gap-2.5 px-5 py-2.5 rounded-xl text-sm font-medium whitespace-nowrap transition-all ${
-                          tool.active
-                            ? 'bg-gradient-to-r from-purple-600/20 to-indigo-600/20 text-purple-300 border border-purple-500/30 shadow-sm shadow-purple-600/10'
-                            : 'text-gray-400 hover:text-white hover:bg-white/5 border border-transparent'
-                        }`}
-                      >
-                        <tool.icon className={`w-4.5 h-4.5 ${tool.active ? 'text-purple-400' : 'text-gray-500'}`} />
-                        {tool.label}
-                      </button>
-                      {/* 中间放置分隔符 | 但最后一项后面不加 */}
-                      {idx < 2 && (
-                        <span className="text-white/8 text-gray-600 select-none">|</span>
-                      )}
-                    </>
+                <div className="flex items-center justify-center gap-3">
+                  {([
+                    { icon: Radio, label: '热点抓取', iconChar: '📡' },
+                    { icon: Music, label: '音色工坊', iconChar: '🎙️' },
+                    { icon: Wrench, label: '创作工具', iconChar: '🛠️' },
+                  ] as const).map((tool) => (
+                    <button
+                      key={tool.label}
+                      onClick={() => handleToolClick(tool.label)}
+                      className={`flex items-center gap-2.5 px-5 py-2.5 rounded-xl text-sm font-medium whitespace-nowrap transition-all duration-200 ${
+                        activeTool === tool.label
+                          ? 'bg-gradient-to-r from-purple-600/25 to-indigo-600/25 text-purple-200 border border-purple-500/40 shadow-sm shadow-purple-600/15 scale-105'
+                          : 'text-gray-400 hover:text-gray-200 hover:bg-white/5 border border-transparent hover:scale-102'
+                      }`}
+                    >
+                      <span className="text-base">{tool.iconChar}</span>
+                      {tool.label}
+                    </button>
                   ))}
                 </div>
               </div>
@@ -105,6 +126,7 @@ export function HermesAgentPage() {
             {/* Agent iframe - 全屏内容 */}
             <div className="flex-1 relative">
               <iframe
+                ref={iframeRef}
                 src={KIMI_AGENT_URL}
                 className="absolute inset-0 w-full h-full border-0"
                 allow="microphone; camera"
