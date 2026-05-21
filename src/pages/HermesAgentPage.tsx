@@ -8,11 +8,11 @@ export function HermesAgentPage() {
 
   return (
     <div className="min-h-screen bg-black flex flex-col">
-      {/* 自定义头部（不带导航栏覆盖全屏） */}
+      {/* 头部导航 */}
       <header className="border-b border-white/5 bg-black/50 backdrop-blur-xl sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            {/* Logo与返回 */}
+            {/* Logo */}
             <a href="/" className="flex items-center gap-2 group">
               <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-primary-dark flex items-center justify-center group-hover:scale-105 transition-transform">
                 <span className="text-white font-bold text-sm">R</span>
@@ -20,7 +20,7 @@ export function HermesAgentPage() {
               <span className="text-white font-semibold text-xl">RendaBio</span>
             </a>
 
-            {/* 页面切换 */}
+            {/* 页面切换：Hermes AI Pro / 创作工具 —— 居中 */}
             <nav className="hidden md:flex items-center gap-1 bg-white/5 rounded-xl p-1">
               <button
                 onClick={() => setActiveTab('full')}
@@ -70,28 +70,33 @@ export function HermesAgentPage() {
       {/* 主内容 */}
       <main className="flex-1 flex flex-col">
         {activeTab === 'full' ? (
-          /* Hermes AI Pro 完整页面 */
           <div className="flex-1 flex flex-col">
-            {/* 工具分类栏 */}
-            <div className="bg-surface/30 border-b border-white/5 px-4 py-3">
-              <div className="max-w-7xl mx-auto">
-                <div className="flex items-center gap-2 overflow-x-auto">
+            {/* Hermes AI Pro 中的三个工具图标 - 居中 */}
+            <div className="bg-surface/20 border-b border-white/5">
+              <div className="max-w-3xl mx-auto px-4 py-4">
+                <div className="flex items-center justify-center gap-6">
                   {[
                     { icon: Radio, label: '热点抓取', active: true },
                     { icon: Music, label: '音色工坊', active: false },
                     { icon: Wrench, label: '创作工具', active: false },
-                  ].map((tool) => (
-                    <button
-                      key={tool.label}
-                      className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium whitespace-nowrap transition-all ${
-                        tool.active
-                          ? 'bg-gradient-to-r from-purple-600/20 to-indigo-600/20 text-purple-300 border border-purple-500/30 shadow-sm'
-                          : 'text-gray-400 hover:text-white hover:bg-white/5 border border-transparent'
-                      }`}
-                    >
-                      <tool.icon className={`w-4 h-4 ${tool.active ? 'text-purple-400' : 'text-gray-500'}`} />
-                      {tool.label}
-                    </button>
+                  ].map((tool, idx) => (
+                    <>
+                      <button
+                        key={tool.label}
+                        className={`flex items-center gap-2.5 px-5 py-2.5 rounded-xl text-sm font-medium whitespace-nowrap transition-all ${
+                          tool.active
+                            ? 'bg-gradient-to-r from-purple-600/20 to-indigo-600/20 text-purple-300 border border-purple-500/30 shadow-sm shadow-purple-600/10'
+                            : 'text-gray-400 hover:text-white hover:bg-white/5 border border-transparent'
+                        }`}
+                      >
+                        <tool.icon className={`w-4.5 h-4.5 ${tool.active ? 'text-purple-400' : 'text-gray-500'}`} />
+                        {tool.label}
+                      </button>
+                      {/* 中间放置分隔符 | 但最后一项后面不加 */}
+                      {idx < 2 && (
+                        <span className="text-white/8 text-gray-600 select-none">|</span>
+                      )}
+                    </>
                   ))}
                 </div>
               </div>
