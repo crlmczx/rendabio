@@ -21,6 +21,7 @@ import { About } from '@/pages/About';
 import { SearchPage } from '@/pages/Search';
 import { VirtualNumber } from '@/pages/VirtualNumber';
 import { VirtualNumberPanel } from '@/components/VirtualNumberPanel';
+import { KimiAgentBubble } from '@/components/KimiAgentBubble';
 
 // 首页组件
 function Home() {
@@ -83,82 +84,85 @@ function PublicRoute({ children }: { children: React.ReactNode }) {
 
 function AppRoutes() {
   return (
-    <Routes>
-      {/* Public Routes */}
-      <Route path="/" element={<Home />} />
-      <Route 
-        path="/login" 
-        element={
-          <PublicRoute>
-            <Login />
-          </PublicRoute>
-        } 
-      />
-      <Route 
-        path="/register" 
-        element={
-          <PublicRoute>
-            <Register />
-          </PublicRoute>
-        } 
-      />
-      <Route path="/about" element={<About />} />
-      <Route path="/search" element={<SearchPage />} />
-      <Route path="/virtual-number" element={<VirtualNumber />} />
-      
-      {/* Protected Routes */}
-      <Route 
-        path="/dashboard" 
-        element={
-          <ProtectedRoute>
-            <Dashboard />
-          </ProtectedRoute>
-        } 
-      />
-      <Route 
-        path="/articles" 
-        element={
-          <ProtectedRoute>
-            <Articles />
-          </ProtectedRoute>
-        } 
-      />
-      <Route 
-        path="/articles/create" 
-        element={
-          <ProtectedRoute>
-            <CreateArticle />
-          </ProtectedRoute>
-        } 
-      />
-      <Route 
-        path="/articles/:id/edit" 
-        element={
-          <ProtectedRoute>
-            <CreateArticle />
-          </ProtectedRoute>
-        } 
-      />
-      <Route 
-        path="/files" 
-        element={
-          <ProtectedRoute>
-            <Files />
-          </ProtectedRoute>
-        } 
-      />
-      <Route 
-        path="/settings" 
-        element={
-          <ProtectedRoute>
-            <Settings />
-          </ProtectedRoute>
-        } 
-      />
-      
-      {/* Fallback */}
-      <Route path="*" element={<Navigate to="/" replace />} />
-    </Routes>
+    <>
+      <Routes>
+        {/* Public Routes */}
+        <Route path="/" element={<Home />} />
+        <Route 
+          path="/login" 
+          element={
+            <PublicRoute>
+              <Login />
+            </PublicRoute>
+          } 
+        />
+        <Route 
+          path="/register" 
+          element={
+            <PublicRoute>
+              <Register />
+            </PublicRoute>
+          } 
+        />
+        <Route path="/about" element={<About />} />
+        <Route path="/search" element={<SearchPage />} />
+        <Route path="/virtual-number" element={<VirtualNumber />} />
+        
+        {/* Protected Routes */}
+        <Route 
+          path="/dashboard" 
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          } 
+        />
+        <Route 
+          path="/articles" 
+          element={
+            <ProtectedRoute>
+              <Articles />
+            </ProtectedRoute>
+          } 
+        />
+        <Route 
+          path="/articles/create" 
+          element={
+            <ProtectedRoute>
+              <CreateArticle />
+            </ProtectedRoute>
+          } 
+        />
+        <Route 
+          path="/articles/:id/edit" 
+          element={
+            <ProtectedRoute>
+              <CreateArticle />
+            </ProtectedRoute>
+          } 
+        />
+        <Route 
+          path="/files" 
+          element={
+            <ProtectedRoute>
+              <Files />
+            </ProtectedRoute>
+          } 
+        />
+        <Route 
+          path="/settings" 
+          element={
+            <ProtectedRoute>
+              <Settings />
+            </ProtectedRoute>
+          } 
+        />
+        
+        {/* Fallback */}
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+      <KimiAgentBubble />
+    </>
   );
 }
 
