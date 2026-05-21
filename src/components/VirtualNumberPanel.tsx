@@ -15,7 +15,9 @@ import {
   Trash2,
   ExternalLink,
   Volume2,
+  Loader2,
 } from 'lucide-react';
+import { makeCall } from '@/api/ronglian';
 
 // ─── Types ──────────────────────────────────────────────────────────────────
 
@@ -36,10 +38,30 @@ const mockRecordings: Recording[] = [
 
 const dialPadKeys = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '*', '0', '#'];
 
+// ─── Storage ────────────────────────────────────────────────────────────────
+
+const STORAGE_KEY_CALL_LOGS = 'rendabio_call_logs';
+
+function addCallLogToStorage(contact: string) {
+  try {
+    const data = localStorage.getItem(STORAGE_KEY_CALL_LOGS);
+    const logs = data ? JSON.parse(data) : [];
+    logs.unshift({
+      id: Date.now().toString(),
+      date: new Date().toLocaleString('zh-CN'),
+      contact,
+      type: 'outgoing',
+      duration: '--',
+    });
+    localStorage.setItem(STORAGE_KEY_CALL_LOGS, JSON.stringify(logs.slice(0, 100)));
+  } catch {}
+}
+
 export function VirtualNumberPanel() {
   const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
   const [number, setNumber] = useState('');
+  const [isCalling, setIsCalling] = useState(false);
 
   const handleKeyPress = useCallback((key: string) => {
     setNumber((prev) => prev + key);
@@ -49,12 +71,22 @@ export function VirtualNumberPanel() {
     setNumber((prev) => prev.slice(0, -1));
   }, []);
 
-  const handleCall = useCallback(() => {
+  const handleCall = useCallback(async () => {
     if (!number.trim()) return;
-    toast.success(t('virtualNumber.dialing').replace('{{number}}', number));
-    setTimeout(() => {
+    setIsCalling(true);
+
+    toast.info(t('virtualNumber.dialing').replace('{{number}}', number));
+
+    const result = await makeCall(number);
+
+    if (result.success) {
       toast.success(t('virtualNumber.callConnected'));
-    }, 1500);
+      addCallLogToStorage(number);
+    } else {
+      toast.error(result.message || t('virtualNumber.callFailed'));
+    }
+
+    setIsCalling(false);
   }, [number, t]);
 
   const handlePlay = useCallback((recording: Recording) => {
@@ -69,12 +101,12 @@ export function VirtualNumberPanel() {
     <>
       {/* Floating Button */}
       <motion.button
-        className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-gradient-to-br from-primary to-purple-600 shadow-lg shadow-primary/30 flex items-center justify-center cursor-pointer"
+        className="fixed bottom-6 right-24 z-50 w-12 h-12 rounded-full bg-gradient-to-br from-primary to-purple-600 shadow-lg shadow-primary/30 flex items-center justify-center cursor-pointer"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
         onClick={() => setIsOpen(true)}
       >
-        <Phone className="w-6 h-6 text-white" />
+        <Phone className="w-5 h-5 text-white" />
       </motion.button>
 
       {/* Overlay */}
@@ -147,17 +179,22 @@ export function VirtualNumberPanel() {
                         variant="ghost"
                         size="icon"
                         onClick={handleDelete}
+                        disabled={isCalling}
                         className="text-gray-400 hover:text-white h-9 w-9"
                       >
                         <ArrowLeft className="w-4 h-4" />
                       </Button>
                       <Button
                         onClick={handleCall}
-                        disabled={!number.trim()}
+                        disabled={!number.trim() || isCalling}
                         className="flex-1 bg-gradient-to-r from-primary to-purple-600 text-white h-9 rounded-xl glow-purple text-sm"
                       >
-                        <Phone className="w-4 h-4 mr-2" />
-                        {t('virtualNumber.call')}
+                        {isCalling ? (
+                          <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                        ) : (
+                          <Phone className="w-4 h-4 mr-2" />
+                        )}
+                        {isCalling ? t('virtualNumber.dialing').replace('{{number}}', '').trim() : t('virtualNumber.call')}
                       </Button>
                     </div>
                   </div>

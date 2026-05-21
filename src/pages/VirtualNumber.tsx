@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -34,7 +34,9 @@ import {
   ShieldBan,
   EyeOff,
   Forward,
+  Loader2,
 } from 'lucide-react';
+import { makeCall } from '@/api/ronglian';
 
 // ─── Types ──────────────────────────────────────────────────────────────────
 
@@ -53,22 +55,33 @@ interface CallLog {
   duration: string;
 }
 
-// ─── Mock Data ──────────────────────────────────────────────────────────────
+// ─── Storage Helpers ─────────────────────────────────────────────────────────
+
+const STORAGE_KEY_CALL_LOGS = 'rendabio_call_logs';
+
+function getCallLogsFromStorage(): CallLog[] {
+  try {
+    const data = localStorage.getItem(STORAGE_KEY_CALL_LOGS);
+    return data ? JSON.parse(data) : [];
+  } catch {
+    return [];
+  }
+}
+
+function addCallLogToStorage(log: CallLog) {
+  const logs = getCallLogsFromStorage();
+  logs.unshift(log);
+  const trimmed = logs.slice(0, 100);
+  localStorage.setItem(STORAGE_KEY_CALL_LOGS, JSON.stringify(trimmed));
+}
+
+// ─── Mock Recordings ─────────────────────────────────────────────────────────
 
 const mockRecordings: Recording[] = [
   { id: '1', date: '2025-05-19', duration: '4:32', contact: '138****5678' },
   { id: '2', date: '2025-05-18', duration: '12:15', contact: '159****2345' },
   { id: '3', date: '2025-05-17', duration: '3:48', contact: '177****8901' },
   { id: '4', date: '2025-05-16', duration: '8:21', contact: '136****4321' },
-];
-
-const mockCallLogs: CallLog[] = [
-  { id: '1', date: '2025-05-19 14:32', contact: '138****5678', type: 'outgoing', duration: '4:32' },
-  { id: '2', date: '2025-05-19 11:15', contact: '159****2345', type: 'incoming', duration: '12:15' },
-  { id: '3', date: '2025-05-18 19:48', contact: '177****8901', type: 'outgoing', duration: '3:48' },
-  { id: '4', date: '2025-05-18 09:05', contact: '136****4321', type: 'incoming', duration: '8:21' },
-  { id: '5', date: '2025-05-17 16:30', contact: '189****6789', type: 'outgoing', duration: '1:15' },
-  { id: '6', date: '2025-05-17 08:00', contact: '150****4567', type: 'incoming', duration: '6:05' },
 ];
 
 const dialPadKeys = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '*', '0', '#'];
@@ -78,6 +91,7 @@ const dialPadKeys = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '*', '0', '#']
 function DialPad() {
   const { t } = useTranslation();
   const [number, setNumber] = useState('');
+  const [callStatus, setCallStatus] = useState<'idle' | 'calling' | 'success' | 'failed'>('idle');
 
   const handleKeyPress = useCallback((key: string) => {
     setNumber((prev) => prev + key);
@@ -87,13 +101,43 @@ function DialPad() {
     setNumber((prev) => prev.slice(0, -1));
   }, []);
 
-  const handleCall = useCallback(() => {
+  const handleCall = useCallback(async () => {
     if (!number.trim()) return;
-    toast.success(t('virtualNumber.dialing').replace('{{number}}', number));
-    setTimeout(() => {
+    setCallStatus('calling');
+
+    toast.info(t('virtualNumber.dialing').replace('{{number}}', number));
+
+    const result = await makeCall(number);
+
+    if (result.success) {
+      setCallStatus('success');
       toast.success(t('virtualNumber.callConnected'));
-    }, 1500);
+
+      // Save to call log
+      addCallLogToStorage({
+        id: Date.now().toString(),
+        date: new Date().toLocaleString('zh-CN'),
+        contact: number,
+        type: 'outgoing',
+        duration: '--',
+      });
+
+      setTimeout(() => setCallStatus('idle'), 1500);
+    } else {
+      setCallStatus('failed');
+      toast.error(result.message || t('virtualNumber.callFailed'));
+      setTimeout(() => setCallStatus('idle'), 2000);
+    }
   }, [number, t]);
+
+  const getButtonLabel = () => {
+    switch (callStatus) {
+      case 'calling': return t('virtualNumber.dialing').replace('{{number}}', '');
+      case 'success': return t('virtualNumber.callConnected');
+      case 'failed': return t('virtualNumber.callFailed');
+      default: return t('virtualNumber.call');
+    }
+  };
 
   return (
     <Card className="bg-surface border-border h-full">
@@ -134,17 +178,33 @@ function DialPad() {
             variant="ghost"
             size="icon"
             onClick={handleDelete}
+            disabled={callStatus === 'calling'}
             className="text-gray-400 hover:text-white"
           >
             <ArrowLeft className="w-5 h-5" />
           </Button>
           <Button
             onClick={handleCall}
-            disabled={!number.trim()}
-            className="flex-1 bg-gradient-to-r from-primary to-purple-600 hover:from-primary-light hover:to-purple-500 text-white font-semibold h-12 rounded-xl glow-purple"
+            disabled={!number.trim() || callStatus === 'calling'}
+            className={`flex-1 h-12 rounded-xl font-semibold ${
+              callStatus === 'failed'
+                ? 'bg-red-600 hover:bg-red-700'
+                : callStatus === 'success'
+                ? 'bg-green-600 hover:bg-green-700'
+                : 'bg-gradient-to-r from-primary to-purple-600 hover:from-primary-light hover:to-purple-500 glow-purple'
+            } text-white`}
           >
-            <Phone className="w-5 h-5 mr-2" />
-            {t('virtualNumber.call')}
+            {callStatus === 'calling' ? (
+              <>
+                <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                {t('virtualNumber.dialing').split(' ')[0] || '呼叫中'}
+              </>
+            ) : (
+              <>
+                <Phone className="w-5 h-5 mr-2" />
+                {getButtonLabel()}
+              </>
+            )}
           </Button>
           <div className="w-10" /> {/* spacer */}
         </div>
@@ -230,7 +290,18 @@ function CallRecordings() {
 
 function CallHistory() {
   const { t } = useTranslation();
-  const [logs] = useState<CallLog[]>(mockCallLogs);
+  const [logs, setLogs] = useState<CallLog[]>(() => getCallLogsFromStorage());
+
+  useEffect(() => {
+    const handleStorage = () => setLogs(getCallLogsFromStorage());
+    window.addEventListener('storage', handleStorage);
+    // Refresh every 3s to catch same-tab updates
+    const interval = setInterval(() => setLogs(getCallLogsFromStorage()), 3000);
+    return () => {
+      window.removeEventListener('storage', handleStorage);
+      clearInterval(interval);
+    };
+  }, []);
 
   return (
     <Card className="bg-surface border-border h-full">
@@ -332,6 +403,7 @@ function VirtualNumberSettings() {
 
 function TabPhone({ t }: { t: (key: string) => string }) {
   const [number, setNumber] = useState('');
+  const [callStatus, setCallStatus] = useState<'idle' | 'calling' | 'success' | 'failed'>('idle');
 
   const handleKeyPress = useCallback((key: string) => {
     setNumber((prev) => prev + key);
@@ -341,12 +413,31 @@ function TabPhone({ t }: { t: (key: string) => string }) {
     setNumber((prev) => prev.slice(0, -1));
   }, []);
 
-  const handleCall = useCallback(() => {
+  const handleCall = useCallback(async () => {
     if (!number.trim()) return;
-    toast.success(t('virtualNumber.dialing').replace('{{number}}', number));
-    setTimeout(() => {
+    setCallStatus('calling');
+    toast.info(t('virtualNumber.dialing').replace('{{number}}', number));
+
+    const result = await makeCall(number);
+
+    if (result.success) {
+      setCallStatus('success');
       toast.success(t('virtualNumber.callConnected'));
-    }, 1500);
+
+      addCallLogToStorage({
+        id: Date.now().toString(),
+        date: new Date().toLocaleString('zh-CN'),
+        contact: number,
+        type: 'outgoing',
+        duration: '--',
+      });
+
+      setTimeout(() => setCallStatus('idle'), 1500);
+    } else {
+      setCallStatus('failed');
+      toast.error(result.message || t('virtualNumber.callFailed'));
+      setTimeout(() => setCallStatus('idle'), 2000);
+    }
   }, [number, t]);
 
   return (
@@ -374,17 +465,28 @@ function TabPhone({ t }: { t: (key: string) => string }) {
           variant="ghost"
           size="icon"
           onClick={handleDelete}
+          disabled={callStatus === 'calling'}
           className="text-gray-400 hover:text-white h-10 w-10"
         >
           <ArrowLeft className="w-4 h-4" />
         </Button>
         <Button
           onClick={handleCall}
-          disabled={!number.trim()}
-          className="bg-gradient-to-r from-primary to-purple-600 text-white h-10 px-6 rounded-xl glow-purple"
+          disabled={!number.trim() || callStatus === 'calling'}
+          className={`h-10 px-6 rounded-xl ${
+            callStatus === 'failed'
+              ? 'bg-red-600'
+              : callStatus === 'success'
+              ? 'bg-green-600'
+              : 'bg-gradient-to-r from-primary to-purple-600 glow-purple'
+          } text-white`}
         >
-          <Phone className="w-4 h-4 mr-2" />
-          {t('virtualNumber.call')}
+          {callStatus === 'calling' ? (
+            <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+          ) : (
+            <Phone className="w-4 h-4 mr-2" />
+          )}
+          {callStatus === 'calling' ? '呼叫中' : callStatus === 'success' ? '已接通' : callStatus === 'failed' ? '失败' : t('virtualNumber.call')}
         </Button>
       </div>
     </div>
@@ -428,39 +530,48 @@ function TabRecordings({ t }: { t: (key: string) => string }) {
 }
 
 function TabHistory({ t }: { t: (key: string) => string }) {
-  const logs = mockCallLogs.slice(0, 4);
+  const [logs, setLogs] = useState<CallLog[]>(() => getCallLogsFromStorage());
+
+  useEffect(() => {
+    const interval = setInterval(() => setLogs(getCallLogsFromStorage()), 3000);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <div className="space-y-2 py-2">
-      {logs.map((log) => (
-        <div key={log.id} className="flex items-center justify-between px-2 py-2 rounded-lg hover:bg-white/5">
-          <div className="flex items-center gap-3">
-            <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
-              log.type === 'incoming' ? 'bg-green-500/10' : 'bg-red-500/10'
-            }`}>
-              {log.type === 'incoming' ? (
-                <PhoneIncoming className="w-4 h-4 text-green-400" />
-              ) : (
-                <PhoneOutgoing className="w-4 h-4 text-red-400" />
-              )}
+      {logs.length === 0 ? (
+        <p className="text-gray-500 text-center py-6 text-sm">{t('virtualNumber.noHistory')}</p>
+      ) : (
+        logs.map((log) => (
+          <div key={log.id} className="flex items-center justify-between px-2 py-2 rounded-lg hover:bg-white/5">
+            <div className="flex items-center gap-3">
+              <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
+                log.type === 'incoming' ? 'bg-green-500/10' : 'bg-red-500/10'
+              }`}>
+                {log.type === 'incoming' ? (
+                  <PhoneIncoming className="w-4 h-4 text-green-400" />
+                ) : (
+                  <PhoneOutgoing className="w-4 h-4 text-red-400" />
+                )}
+              </div>
+              <div>
+                <p className="text-white text-sm">{log.contact}</p>
+                <p className="text-gray-500 text-xs">{log.date} · {log.duration}</p>
+              </div>
             </div>
-            <div>
-              <p className="text-white text-sm">{log.contact}</p>
-              <p className="text-gray-500 text-xs">{log.date} · {log.duration}</p>
-            </div>
+            <Badge
+              variant="outline"
+              className={
+                log.type === 'incoming'
+                  ? 'border-green-500/30 text-green-400 bg-green-500/10 text-xs'
+                  : 'border-red-500/30 text-red-400 bg-red-500/10 text-xs'
+              }
+            >
+              {t(log.type === 'incoming' ? 'virtualNumber.incoming' : 'virtualNumber.outgoing')}
+            </Badge>
           </div>
-          <Badge
-            variant="outline"
-            className={
-              log.type === 'incoming'
-                ? 'border-green-500/30 text-green-400 bg-green-500/10 text-xs'
-                : 'border-red-500/30 text-red-400 bg-red-500/10 text-xs'
-            }
-          >
-            {t(log.type === 'incoming' ? 'virtualNumber.incoming' : 'virtualNumber.outgoing')}
-          </Badge>
-        </div>
-      ))}
+        ))
+      )}
     </div>
   );
 }
