@@ -80,27 +80,29 @@ export function HermesAgentPage() {
       <main className="flex-1 flex flex-col">
         {activeTab === 'full' ? (
           <div className="flex-1 flex flex-col">
-            {/* 三个工具按钮 - 居中 */}
+            {/* 三个工具按钮 - 居中容器中向右偏移 */}
             <div className="bg-[#0a0e1a] border-b border-white/5">
-              <div className="flex items-center justify-center gap-4 px-4 py-3">
-                {([
-                  { icon: Radio, label: '热点抓取', iconChar: '📡' },
-                  { icon: Music, label: '音色工坊', iconChar: '🎙️' },
-                  { icon: Wrench, label: '创作工具', iconChar: '🛠️' },
-                ] as const).map((tool) => (
-                  <button
-                    key={tool.label}
-                    onClick={() => handleToolClick(tool.label)}
-                    className={`flex items-center gap-2 px-5 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-all duration-200 ${
-                      activeTool === tool.label
-                        ? 'bg-gradient-to-r from-purple-600/25 to-indigo-600/25 text-purple-200 border border-purple-500/30'
-                        : 'text-gray-400 hover:text-gray-200 hover:bg-white/5 border border-transparent'
-                    }`}
-                  >
-                    <span className="text-base">{tool.iconChar}</span>
-                    {tool.label}
-                  </button>
-                ))}
+              <div className="flex justify-center">
+                <div className="flex items-center gap-4 pl-8 py-3">
+                  {([
+                    { icon: Radio, label: '热点抓取', iconChar: '📡' },
+                    { icon: Music, label: '音色工坊', iconChar: '🎙️' },
+                    { icon: Wrench, label: '创作工具', iconChar: '🛠️' },
+                  ] as const).map((tool) => (
+                    <button
+                      key={tool.label}
+                      onClick={() => handleToolClick(tool.label)}
+                      className={`flex items-center gap-2 px-5 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-all duration-200 ${
+                        activeTool === tool.label
+                          ? 'bg-gradient-to-r from-purple-600/25 to-indigo-600/25 text-purple-200 border border-purple-500/30'
+                          : 'text-gray-400 hover:text-gray-200 hover:bg-white/5 border border-transparent'
+                      }`}
+                    >
+                      <span className="text-base">{tool.iconChar}</span>
+                      {tool.label}
+                    </button>
+                  ))}
+                </div>
               </div>
             </div>
 
